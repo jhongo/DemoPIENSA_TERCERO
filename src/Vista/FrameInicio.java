@@ -22,6 +22,7 @@ public class FrameInicio extends javax.swing.JFrame {
 
         btnRegistrar.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
         btnRegistrar.setForeground(new java.awt.Color(0, 0, 0));
+        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_user-id_285641.png"))); // NOI18N
         btnRegistrar.setText("Registrar Docente");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -31,7 +32,8 @@ public class FrameInicio extends javax.swing.JFrame {
 
         btnIS.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
         btnIS.setForeground(new java.awt.Color(0, 0, 0));
-        btnIS.setText("Iniciar sesion");
+        btnIS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_Login_73221.png"))); // NOI18N
+        btnIS.setText("  Iniciar sesion");
         btnIS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnISActionPerformed(evt);
@@ -46,8 +48,8 @@ public class FrameInicio extends javax.swing.JFrame {
                 .addGap(107, 107, 107)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnIS, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(108, Short.MAX_VALUE))
+                    .addComponent(btnIS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -56,7 +58,7 @@ public class FrameInicio extends javax.swing.JFrame {
                 .addComponent(btnRegistrar)
                 .addGap(18, 18, 18)
                 .addComponent(btnIS)
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
