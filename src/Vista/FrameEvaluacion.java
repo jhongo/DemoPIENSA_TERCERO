@@ -381,7 +381,8 @@ public class FrameEvaluacion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIniciarJuegoActionPerformed
 
     private void btnRegistrarEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarEstudiantesActionPerformed
-
+        FrameRegistroAlumno c = new FrameRegistroAlumno();
+        c.setVisible(true);
         
 
     }//GEN-LAST:event_btnRegistrarEstudiantesActionPerformed

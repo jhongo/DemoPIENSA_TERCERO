@@ -5,6 +5,8 @@ import Modelo.registroAlumnos;
 import Vista.FrameRegistroAlumno;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +15,7 @@ import java.util.List;
 import javax.swing.Action;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class CtrAlumnos{ 
@@ -226,5 +229,32 @@ public class CtrAlumnos{
 //        
 //    } 
     
+public void validarletras(JTextField campo){
+    campo.addKeyListener(new KeyAdapter() {
+        public void KeyTyped(KeyEvent e){
+            char c=e.getKeyChar();
+            if (Character.isDigit(c)) {
+                e.consume();
+                JOptionPane.showMessageDialog(null,"Ingrese solo letras");
+        }
+        }
+        
+        
+});  
+}
+
+public void validarnumeros(JTextField campo){
+    campo.addKeyListener(new KeyAdapter() {
+        public void KeyTyped(KeyEvent e){
+            char c=e.getKeyChar();
+            if (!Character.isDigit(c)) {
+                e.consume();
+                JOptionPane.showMessageDialog(null,"Ingrese solo letras");
+        }
+        }
+        
+        
+});  
+}
 
 }

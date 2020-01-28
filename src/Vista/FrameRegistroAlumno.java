@@ -1,5 +1,6 @@
 package Vista;
 
+import Controlador.CtrAlumnos;
 import Modelo.Conexion;
 import Modelo.ConsultaAlumnos;
 import Modelo.registroAlumnos;
@@ -12,10 +13,65 @@ import javax.swing.table.DefaultTableModel;
 
 public class FrameRegistroAlumno extends javax.swing.JFrame {
 
+    CtrAlumnos validar=new CtrAlumnos();
     public FrameRegistroAlumno() {
         initComponents();
         this.setLocationRelativeTo(null);
+        validar.validarletras(txtNombreAlumno);
+        validar.validarletras(txtApellidosAlumno);
+        validar.validarnumeros(txtEdadAlumno);
+        
     }
+    /*Codigo para validar la cedula*/
+public boolean validadorDeCedula(String cedula) {
+boolean cedulaCorrecta = false;
+ 
+try {
+ 
+if (cedula.length() == 10) // ConstantesApp.LongitudCedula
+{
+int tercerDigito = Integer.parseInt(cedula.substring(2, 3));
+if (tercerDigito < 6) {
+// Coeficientes de validación cédula
+// El decimo digito se lo considera dígito verificador
+ int[] coefValCedula = { 2, 1, 2, 1, 2, 1, 2, 1, 2 };
+ int verificador = Integer.parseInt(cedula.substring(9,10));
+ int suma = 0;
+ int digito = 0;
+for (int i = 0; i < (cedula.length() - 1); i++) {
+ digito = Integer.parseInt(cedula.substring(i, i + 1))* coefValCedula[i];
+ suma += ((digito % 10) + (digito / 10));
+}
+ 
+if ((suma % 10 == 0) && (suma % 10 == verificador)) {
+ cedulaCorrecta = true;
+}
+else if ((10 - (suma % 10)) == verificador) {
+ cedulaCorrecta = true;
+} else {
+ cedulaCorrecta = false;
+}
+} else {
+cedulaCorrecta = false;
+}
+} else {
+cedulaCorrecta = false;
+}
+} catch (NumberFormatException nfe) {
+cedulaCorrecta = false;
+} catch (Exception err) {
+JOptionPane.showMessageDialog(null, "Una excepcion ocurrio en el proceso de validadcion");
+cedulaCorrecta = false;
+}
+ 
+if (!cedulaCorrecta) {
+ JOptionPane.showMessageDialog(null,"La Cédula ingresada es Incorrecta");
+}else{
+    JOptionPane.showMessageDialog(null, "Cedula Correcta");
+
+}
+return cedulaCorrecta;
+}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -40,7 +96,7 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
         txtBuscarAlumno = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        cmbCursos = new javax.swing.JComboBox<>();
+        cmbCursos = new javax.swing.JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,9 +118,20 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
         jLabel6.setText("REGISTRO DE ESTUDIANTES");
 
+        txtNombreAlumno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreAlumnoKeyTyped(evt);
+            }
+        });
+
         txtApellidosAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtApellidosAlumnoActionPerformed(evt);
+            }
+        });
+        txtApellidosAlumno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidosAlumnoKeyTyped(evt);
             }
         });
 
@@ -77,6 +144,11 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
         txtEdadAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEdadAlumnoActionPerformed(evt);
+            }
+        });
+        txtEdadAlumno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEdadAlumnoKeyTyped(evt);
             }
         });
 
@@ -126,7 +198,7 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_498_student__notes__note_education_4212916.png"))); // NOI18N
 
-        cmbCursos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- SELECCIONAR-- ", "1ro Basica", "2do Basica ", "3ro Basica ", "4to Basica ", "5to Basica ", "6to Basica", "7mo Basica" }));
+        cmbCursos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- SELECCIONAR-- ", "1ro Basica", "2do Basica ", "3ro Basica ", "4to Basica ", "5to Basica ", "6to Basica", "7mo Basica" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -370,6 +442,33 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "ERROR" + e);
         }
     }//GEN-LAST:event_txtBuscarAlumnoKeyPressed
+
+    private void txtNombreAlumnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreAlumnoKeyTyped
+        char validar=evt.getKeyChar();
+        if (Character.isDigit(validar)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane,"Ingresar solo letras");
+        }
+    }//GEN-LAST:event_txtNombreAlumnoKeyTyped
+
+    private void txtApellidosAlumnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosAlumnoKeyTyped
+        char validar=evt.getKeyChar();
+        if (Character.isDigit(validar)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane,"Ingresar solo letras");
+        }
+    }//GEN-LAST:event_txtApellidosAlumnoKeyTyped
+
+    private void txtEdadAlumnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadAlumnoKeyTyped
+        char validar=evt.getKeyChar();
+        if (Character.isLetter(validar)) {
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(rootPane,"Ingresar solo numeros");
+        }
+    }//GEN-LAST:event_txtEdadAlumnoKeyTyped
 
     /**
      * @param args the command line arguments
