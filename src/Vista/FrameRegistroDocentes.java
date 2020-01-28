@@ -1,5 +1,10 @@
 package Vista;
 
+import Modelo.ConsultaDocentes;
+import Modelo.hash;
+import Modelo.registroDocentes;
+import javax.swing.JOptionPane;
+
 
 public class FrameRegistroDocentes extends javax.swing.JFrame {
 
@@ -7,7 +12,8 @@ public class FrameRegistroDocentes extends javax.swing.JFrame {
      * Creates new form FrameRegistroDocentes
      */
     public FrameRegistroDocentes() {
-        initComponents();
+        initComponents(); 
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -126,9 +132,60 @@ public class FrameRegistroDocentes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+      public void limpiar(){
+     txtNombre.setText(null);
+     txtPassword.setText(null);
+     txtPasswordC.setText(null);
+     txtUsuario.setText(null);
+     txtCorreo.setText(null);
+     
+        
+    }
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        ConsultaDocentes moSql = new ConsultaDocentes();
+        registroDocentes mod = new registroDocentes();
 
+        String pass = new String(txtPassword.getPassword());
+        String passC = new String(txtPasswordC.getPassword());
+
+        if (txtUsuario.getText().equals("") || pass.equals("") || passC.equals("") || txtNombre.getText().equals("")
+                || txtCorreo.getText().equals("")) { //VERIFICA QUE TODOS LOS CAMPOS DE TEXTOS ESTE LLENOS
+
+            JOptionPane.showMessageDialog(null, "Llenar todos los campos");
+        } else {
+
+            if (pass.equals(passC)) { //CONFIRMACION DE CORREO
+
+                if (moSql.existeUsuario(txtUsuario.getText()) == 0) { //VERIFICACION DE USUARIOS EXISTENTES
+
+                    if (moSql.esEmail(txtCorreo.getText())) { //VALIDACION DE CORREO EXISTENTE
+
+                        String nuevoPass = hash.sha1(pass);
+
+                        mod.setUsuario(txtUsuario.getText());
+                        mod.setPassword(nuevoPass);
+                        mod.setNombre(txtNombre.getText());
+                        mod.setCorreo(txtCorreo.getText());
+                        
+
+                        if (moSql.registrar(mod)) {
+                            JOptionPane.showMessageDialog(null, "Guardado"); 
+                            limpiar();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Error al guardar");
+
+                        } //REGISTRO DE USUARIOS
+                    } else {
+                        JOptionPane.showMessageDialog(null, "El correo electronico no es valido");
+                    } //FINALIZACION DE VALIDACION DE CORREO
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "El usuario ya existe");
+                }  //TERMINO DE VERIFICACION DE USUARIO EXISTENTE
+            } else {
+                JOptionPane.showMessageDialog(null, "Contraseña no coincide");
+            } //TERMINO DE VERIFICACION DE CORREO EXISTENTE
+        }
       
     }//GEN-LAST:event_btnRegistrarActionPerformed
 

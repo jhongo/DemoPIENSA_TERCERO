@@ -1,36 +1,48 @@
 package Modelo;
-
-import com.mysql.jdbc.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.*; 
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author USER
  */
-public class Conexion {
+public class Conexion { 
     
-    private final String base = "escuela";
-    private final String user = "root";
-    private final String password = "";
-    private final String url = "jdbc:mysql://localhost:3306/"+base;
-    private Connection con=null; 
-    
-    
-    public Connection getConexion(){
+        public static Connection conectar(){
         try {
-             Class.forName("com.mysql.jdbc.Driver");
-            con=(Connection) DriverManager.getConnection(url,user,password);
-        } catch (SQLException e) { 
+            Connection cn= DriverManager.getConnection("jdbc:mysql://localhost/escuela","root","");
             
-            System.out.println(e);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-        }    
-        return con;
+              return cn;
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "   Erro en la conexion "+e);
+        }
+        
+        return (null);
     }
+    
+    
+    
+    
+//    private final String base = "escuela";
+//    private final String user = "root";
+//    private final String password = "";
+//    private final String url = "jdbc:mysql://localhost:3306/"+base;
+//    private Connection con=null; 
+    
+    
+//    public Connection getConexion(){
+//        try {
+//             Class.forName("com.mysql.jdbc.Driver");
+//            con=(Connection) DriverManager.getConnection(url,user,password);
+//        } catch (SQLException e) { 
+//            
+//            System.out.println(e);
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+//        }    
+//        return con;
+//    }
   
     
 }

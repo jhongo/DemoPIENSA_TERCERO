@@ -10,12 +10,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
-public class ConsultaDocentes extends Conexion {
+public class ConsultaDocentes{
 
     //REGISTRO DE DOCENTES
     public boolean registrar(registroDocentes usr) {
         PreparedStatement ps = null;
-        Connection con = getConexion();
+        Connection con = Conexion.conectar();
 
         String sql = "INSERT INTO registrodocentes (usuario,password,nombre,correo) VALUES(?,?,?,?)";
 
@@ -56,7 +56,7 @@ public class ConsultaDocentes extends Conexion {
        public int existeUsuario(String docente) {
         PreparedStatement ps = null;
         ResultSet rs = null;
-        Connection con = getConexion();
+        Connection con = Conexion.conectar();
 
         String sql = "SELECT count(Id) FROM registrodocentes WHERE usuario = ?";
 
@@ -88,7 +88,7 @@ public class ConsultaDocentes extends Conexion {
        public boolean Login(registroDocentes rgd) {
         PreparedStatement ps = null;
         ResultSet rs = null;
-        Connection con = getConexion();
+        Connection con = Conexion.conectar();
 
         String sql = "SELECT Id,usuario,password,nombre FROM registrodocentes WHERE usuario =?";
 
