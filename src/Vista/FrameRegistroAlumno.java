@@ -13,65 +13,66 @@ import javax.swing.table.DefaultTableModel;
 
 public class FrameRegistroAlumno extends javax.swing.JFrame {
 
-    CtrAlumnos validar=new CtrAlumnos();
+    CtrAlumnos validar = new CtrAlumnos();
+
     public FrameRegistroAlumno() {
         initComponents();
         this.setLocationRelativeTo(null);
         validar.validarletras(txtNombreAlumno);
         validar.validarletras(txtApellidosAlumno);
         validar.validarnumeros(txtEdadAlumno);
-        
+
     }
+
     /*Codigo para validar la cedula*/
-public boolean validadorDeCedula(String cedula) {
-boolean cedulaCorrecta = false;
- 
-try {
- 
-if (cedula.length() == 10) // ConstantesApp.LongitudCedula
-{
-int tercerDigito = Integer.parseInt(cedula.substring(2, 3));
-if (tercerDigito < 6) {
+    public boolean validadorDeCedula(String cedula) {
+        boolean cedulaCorrecta = false;
+
+        try {
+
+            if (cedula.length() == 10) // ConstantesApp.LongitudCedula
+            {
+                int tercerDigito = Integer.parseInt(cedula.substring(2, 3));
+                if (tercerDigito < 6) {
 // Coeficientes de validación cédula
 // El decimo digito se lo considera dígito verificador
- int[] coefValCedula = { 2, 1, 2, 1, 2, 1, 2, 1, 2 };
- int verificador = Integer.parseInt(cedula.substring(9,10));
- int suma = 0;
- int digito = 0;
-for (int i = 0; i < (cedula.length() - 1); i++) {
- digito = Integer.parseInt(cedula.substring(i, i + 1))* coefValCedula[i];
- suma += ((digito % 10) + (digito / 10));
-}
- 
-if ((suma % 10 == 0) && (suma % 10 == verificador)) {
- cedulaCorrecta = true;
-}
-else if ((10 - (suma % 10)) == verificador) {
- cedulaCorrecta = true;
-} else {
- cedulaCorrecta = false;
-}
-} else {
-cedulaCorrecta = false;
-}
-} else {
-cedulaCorrecta = false;
-}
-} catch (NumberFormatException nfe) {
-cedulaCorrecta = false;
-} catch (Exception err) {
-JOptionPane.showMessageDialog(null, "Una excepcion ocurrio en el proceso de validadcion");
-cedulaCorrecta = false;
-}
- 
-if (!cedulaCorrecta) {
- JOptionPane.showMessageDialog(null,"La Cédula ingresada es Incorrecta");
-}else{
-    JOptionPane.showMessageDialog(null, "Cedula Correcta");
+                    int[] coefValCedula = {2, 1, 2, 1, 2, 1, 2, 1, 2};
+                    int verificador = Integer.parseInt(cedula.substring(9, 10));
+                    int suma = 0;
+                    int digito = 0;
+                    for (int i = 0; i < (cedula.length() - 1); i++) {
+                        digito = Integer.parseInt(cedula.substring(i, i + 1)) * coefValCedula[i];
+                        suma += ((digito % 10) + (digito / 10));
+                    }
 
-}
-return cedulaCorrecta;
-}
+                    if ((suma % 10 == 0) && (suma % 10 == verificador)) {
+                        cedulaCorrecta = true;
+                    } else if ((10 - (suma % 10)) == verificador) {
+                        cedulaCorrecta = true;
+                    } else {
+                        cedulaCorrecta = false;
+                    }
+                } else {
+                    cedulaCorrecta = false;
+                }
+            } else {
+                cedulaCorrecta = false;
+            }
+        } catch (NumberFormatException nfe) {
+            cedulaCorrecta = false;
+        } catch (Exception err) {
+            JOptionPane.showMessageDialog(null, "Una excepcion ocurrio en el proceso de validadcion");
+            cedulaCorrecta = false;
+        }
+
+        if (!cedulaCorrecta) {
+            JOptionPane.showMessageDialog(null, "La Cédula ingresada es Incorrecta");
+        } else {
+            JOptionPane.showMessageDialog(null, "Cedula Correcta");
+
+        }
+        return cedulaCorrecta;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -96,7 +97,7 @@ return cedulaCorrecta;
         txtBuscarAlumno = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        cmbCursos = new javax.swing.JComboBox<String>();
+        cmbCursos = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -163,6 +164,11 @@ return cedulaCorrecta;
 
             }
         ));
+        tbAlumnos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbAlumnosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbAlumnos);
 
         btnEiminarEstudiantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_f-cross_256_282471.png"))); // NOI18N
@@ -175,6 +181,11 @@ return cedulaCorrecta;
 
         btnMdificarEstudiantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_agt_reload_15581.png"))); // NOI18N
         btnMdificarEstudiantes.setText("Modificar");
+        btnMdificarEstudiantes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMdificarEstudiantesActionPerformed(evt);
+            }
+        });
 
         btnGuardarEstudiantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_floppy_285657.png"))); // NOI18N
         btnGuardarEstudiantes.setText("Guardar");
@@ -186,6 +197,11 @@ return cedulaCorrecta;
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_edit-clear_23227.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         txtBuscarAlumno.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -198,7 +214,7 @@ return cedulaCorrecta;
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_498_student__notes__note_education_4212916.png"))); // NOI18N
 
-        cmbCursos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- SELECCIONAR-- ", "1ro Basica", "2do Basica ", "3ro Basica ", "4to Basica ", "5to Basica ", "6to Basica", "7mo Basica" }));
+        cmbCursos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- SELECCIONAR-- ", "1ro Basica", "2do Basica ", "3ro Basica ", "4to Basica ", "5to Basica ", "6to Basica", "7mo Basica" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -299,12 +315,13 @@ return cedulaCorrecta;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void limpiar(){
-    txtNombreAlumno.setText(null);
-    txtApellidosAlumno.setText(null); 
-    txtCiAlumno.setText(null); 
-    txtEdadAlumno.setText(null);  
+    public void limpiar() {
+        txtNombreAlumno.setText(null);
+        txtApellidosAlumno.setText(null);
+        txtCiAlumno.setText(null);
+        txtEdadAlumno.setText(null);
     }
+
     public void mostrarDatos(String valor) {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID");
@@ -371,7 +388,7 @@ return cedulaCorrecta;
             ps.setString(5, cmbCursos.getSelectedItem().toString());
             ps.execute();
             JOptionPane.showMessageDialog(null, "Registro Exitoso");
-            mostrarDatos(""); 
+            mostrarDatos("");
             limpiar();
 
         } catch (SQLException ex) {
@@ -386,32 +403,36 @@ return cedulaCorrecta;
 
         }
 
-//      ConsultaAlumnos modSql = new ConsultaAlumnos();
-//        registroAlumnos mod = new registroAlumnos();
-//        
-//        mod.setNombres(txtNombreAlumno.getText());
-//        mod.setApellidos(txtApellidosAlumno.getText()); 
-//        mod.setCi(txtCiAlumno.getText());
-//        mod.setEdad(txtEdadAlumno.getText());
-//        mod.setCurso(txtCursoAlumno.getText());
-//        
-//        if (modSql.registrar(mod)) {
-//            JOptionPane.showMessageDialog(null, "Guardado");
-//           
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Error al guardar");
-//
-//        }
-
     }//GEN-LAST:event_btnGuardarEstudiantesActionPerformed
 
     private void btnEiminarEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEiminarEstudiantesActionPerformed
+
+        PreparedStatement ps = null;
+        Connection con = Conexion.conectar();
+        try {
+
+            ps = con.prepareStatement("DELETE FROM registroestudiantes WHERE IdEstudiantes =?");
+            ps.setString(1, txtBuscarAlumno.getText());
+            ps.executeUpdate(); 
+            limpiar();
+            
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error" + ex);
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+
+        }
 
     }//GEN-LAST:event_btnEiminarEstudiantesActionPerformed
 
     private void txtBuscarAlumnoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarAlumnoKeyPressed
 
- 
         try {
             DefaultTableModel model = new DefaultTableModel();
             model.addColumn("ID");
@@ -420,10 +441,10 @@ return cedulaCorrecta;
             model.addColumn("CI");
             model.addColumn("EDAD");
             model.addColumn("CURSO");
-            
+
             String dato[] = new String[7];
             Connection cn = Conexion.conectar();
-            
+
             PreparedStatement ps = cn.prepareStatement("select IdEstudiantes ID, nombres NOMBRES, apellidos APELLIDOS,ci CI , edad EDAD,curso CURSO"
                     + " from registroestudiantes where nombres LIKE '%" + txtBuscarAlumno.getText() + "%'");
             ResultSet rs = ps.executeQuery();
@@ -444,31 +465,76 @@ return cedulaCorrecta;
     }//GEN-LAST:event_txtBuscarAlumnoKeyPressed
 
     private void txtNombreAlumnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreAlumnoKeyTyped
-        char validar=evt.getKeyChar();
+        char validar = evt.getKeyChar();
         if (Character.isDigit(validar)) {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane,"Ingresar solo letras");
+            JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras");
         }
     }//GEN-LAST:event_txtNombreAlumnoKeyTyped
 
     private void txtApellidosAlumnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosAlumnoKeyTyped
-        char validar=evt.getKeyChar();
+        char validar = evt.getKeyChar();
         if (Character.isDigit(validar)) {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane,"Ingresar solo letras");
+            JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras");
         }
     }//GEN-LAST:event_txtApellidosAlumnoKeyTyped
 
     private void txtEdadAlumnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadAlumnoKeyTyped
-        char validar=evt.getKeyChar();
+        char validar = evt.getKeyChar();
         if (Character.isLetter(validar)) {
             getToolkit().beep();
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane,"Ingresar solo numeros");
+            JOptionPane.showMessageDialog(rootPane, "Ingresar solo numeros");
         }
     }//GEN-LAST:event_txtEdadAlumnoKeyTyped
+
+    private void btnMdificarEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMdificarEstudiantesActionPerformed
+           
+        PreparedStatement ps = null;
+        Connection con = Conexion.conectar();
+
+        String sql = "Update registroestudiantes SET nombres=?, apellidos=?, ci=?, edad=?, curso=? Where IdEstudiantes=?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, txtNombreAlumno.getText().trim());
+            ps.setString(2, txtApellidosAlumno.getText().trim());
+            ps.setString(3, txtCiAlumno.getText().trim());
+            ps.setString(4, txtEdadAlumno.getText().trim());
+            ps.setString(5, cmbCursos.getSelectedItem().toString());
+            
+            ps.executeUpdate();
+           
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error" + ex);
+             
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+
+        }
+    
+    }//GEN-LAST:event_btnMdificarEstudiantesActionPerformed
+
+    private void tbAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbAlumnosMouseClicked
+          int seleccion = tbAlumnos.rowAtPoint(evt.getPoint()); 
+        
+            txtNombreAlumno.setText(String.valueOf(tbAlumnos.getValueAt(seleccion, 1).toString()));
+            txtApellidosAlumno.setText(String.valueOf(tbAlumnos.getValueAt(seleccion, 2).toString()));
+            txtCiAlumno.setText(String.valueOf(tbAlumnos.getValueAt(seleccion, 3).toString()));
+            txtEdadAlumno.setText(String.valueOf(tbAlumnos.getValueAt(seleccion, 4).toString()));
+            cmbCursos.setSelectedItem(String.valueOf(tbAlumnos.getValueAt(seleccion, 5).toString()));
+            
+    }//GEN-LAST:event_tbAlumnosMouseClicked
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+       limpiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     /**
      * @param args the command line arguments

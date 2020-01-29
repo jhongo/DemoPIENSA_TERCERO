@@ -13,45 +13,7 @@ import jdk.internal.instrumentation.Logger;
 
 public class ConsultaAlumnos extends Conexion { 
     FrameRegistroAlumno fra = new FrameRegistroAlumno();
-    
-//    Conexion conectar = new Conexion();
-//    Connection con; 
-//    PreparedStatement pst; 
-//    ResultSet rst; 
-//     
-//      public List listar(){
-//    List<registroAlumnos>datos = new ArrayList<>(); 
-//    String sql ="select * from registroestudiantes";
-//        try {
-//            con= conectar.getConexion();
-//            pst=con.prepareStatement(sql); 
-//            rst=pst.executeQuery(); 
-//            
-//            while (rst.next()) {                
-//                registroAlumnos p = new registroAlumnos();
-//                p.setIdEstudiantes(rst.getInt(1));
-//                p.setNombres(rst.getString(2));
-//                p.setApellidos(rst.getString(3));
-//                p.setCi(rst.getString(4));
-//                p.setEdad(rst.getString(5));
-//                p.setCurso(rst.getString(6));
-//                p.setTiempo(rst.getString(7));
-//                p.setPlaneacion(rst.getString(8));
-//                p.setCoordinacion(rst.getString(9));
-//                p.setFuerza_muscular(rst.getString(10));
-//                p.setSensibilidad(rst.getString(11)); 
-//                datos.add(p);
-//            }
-//        } catch (Exception e) {
-//        }
-//            
-//      return datos;
-//    
-//    }
-    
-    
- 
-    
+     
    // REGISTRO DE ESTUDIANTES 
     public boolean registrar(registroAlumnos rga) {
         PreparedStatement ps = null;
