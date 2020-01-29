@@ -228,7 +228,7 @@ public class CtrAlumnos{
 //        }
 //        
 //    } 
-    
+      
 public void validarletras(JTextField campo){
     campo.addKeyListener(new KeyAdapter() {
         public void KeyTyped(KeyEvent e){
@@ -243,18 +243,6 @@ public void validarletras(JTextField campo){
 });  
 }
 
-public void validarnumeros(JTextField campo){
-    campo.addKeyListener(new KeyAdapter() {
-        public void KeyTyped(KeyEvent e){
-            char c=e.getKeyChar();
-            if (!Character.isDigit(c)) {
-                e.consume();
-                JOptionPane.showMessageDialog(null,"Ingrese solo letras");
-        }
-        }
-        
-        
-});  
-}
 
 }
+
