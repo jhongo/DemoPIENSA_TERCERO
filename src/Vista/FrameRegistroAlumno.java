@@ -18,12 +18,16 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
     public FrameRegistroAlumno() {
         initComponents();
         this.setLocationRelativeTo(null);
-        validar.validarletras(txtNombreAlumno);
-        validar.validarletras(txtApellidosAlumno);
-        validar.validarnumeros(txtEdadAlumno);
+        validar.validarletras(txtNombreAlumno);           
+        validar.validarletras(txtApellidosAlumno);         
+
+        
+
 
     }
 
+  
+    
     /*Codigo para validar la cedula*/
     public boolean validadorDeCedula(String cedula) {
         boolean cedulaCorrecta = false;
@@ -97,7 +101,7 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
         txtBuscarAlumno = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        cmbCursos = new javax.swing.JComboBox<>();
+        cmbCursos = new javax.swing.JComboBox<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -139,6 +143,11 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
         txtCiAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCiAlumnoActionPerformed(evt);
+            }
+        });
+        txtCiAlumno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCiAlumnoKeyTyped(evt);
             }
         });
 
@@ -214,7 +223,7 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_498_student__notes__note_education_4212916.png"))); // NOI18N
 
-        cmbCursos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- SELECCIONAR-- ", "1ro Basica", "2do Basica ", "3ro Basica ", "4to Basica ", "5to Basica ", "6to Basica", "7mo Basica" }));
+        cmbCursos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- SELECCIONAR-- ", "1ro Basica", "2do Basica ", "3ro Basica ", "4to Basica ", "5to Basica ", "6to Basica", "7mo Basica" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -459,29 +468,45 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarAlumnoKeyPressed
 
     private void txtNombreAlumnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreAlumnoKeyTyped
-        char validar = evt.getKeyChar();
-        if (Character.isDigit(validar)) {
-            getToolkit().beep();
+    if (evt.getKeyChar()>=33 && evt.getKeyChar()<=64
+                || evt.getKeyChar()>= 91 && evt.getKeyChar()<=96
+                || evt.getKeyChar()>=123 && evt.getKeyChar()<=208
+                || evt.getKeyChar()>=210 && evt.getKeyChar()<=240
+                || evt.getKeyChar()>=242 && evt.getKeyChar()<=255){
+                
+                
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras");
-        }
+        JOptionPane.showMessageDialog(null,"Ingrese solo letras");
+               }
     }//GEN-LAST:event_txtNombreAlumnoKeyTyped
 
     private void txtApellidosAlumnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosAlumnoKeyTyped
-        char validar = evt.getKeyChar();
-        if (Character.isDigit(validar)) {
-            getToolkit().beep();
+        if (evt.getKeyChar()>=33 && evt.getKeyChar()<=64
+                || evt.getKeyChar()>= 91 && evt.getKeyChar()<=96
+                || evt.getKeyChar()>=123 && evt.getKeyChar()<=208
+                || evt.getKeyChar()>=210 && evt.getKeyChar()<=240
+                || evt.getKeyChar()>=242 && evt.getKeyChar()<=255){
+                
+                
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Ingresar solo letras");
-        }
+        JOptionPane.showMessageDialog(null,"Ingrese solo letras");
+               }
     }//GEN-LAST:event_txtApellidosAlumnoKeyTyped
 
     private void txtEdadAlumnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadAlumnoKeyTyped
-        char validar = evt.getKeyChar();
-        if (Character.isLetter(validar)) {
-            getToolkit().beep();
+               if (evt.getKeyChar()>=33 && evt.getKeyChar()<=47
+                || evt.getKeyChar()>= 58 && evt.getKeyChar()<=208
+                || evt.getKeyChar()>=210 && evt.getKeyChar()<=240
+                || evt.getKeyChar()>=242 && evt.getKeyChar()<=255){
+                
+                
             evt.consume();
-            JOptionPane.showMessageDialog(rootPane, "Ingresar solo numeros");
+        JOptionPane.showMessageDialog(null,"Ingrese solo numeros");
+               }
+         int tam=txtEdadAlumno.getText().length();
+            if (tam>=2) {
+                evt.consume();
+             
         }
     }//GEN-LAST:event_txtEdadAlumnoKeyTyped
 
@@ -529,6 +554,24 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
        limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void txtCiAlumnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCiAlumnoKeyTyped
+                if (evt.getKeyChar()>=33 && evt.getKeyChar()<=47
+                || evt.getKeyChar()>= 58 && evt.getKeyChar()<=208
+                || evt.getKeyChar()>=210 && evt.getKeyChar()<=240
+                || evt.getKeyChar()>=242 && evt.getKeyChar()<=255){
+                
+                
+            evt.consume();
+        JOptionPane.showMessageDialog(null,"Ingrese solo numeros");
+               }
+        
+        int tam=txtCiAlumno.getText().length();
+            if (tam>=10) {
+                evt.consume();
+             
+        }
+    }//GEN-LAST:event_txtCiAlumnoKeyTyped
 
     /**
      * @param args the command line arguments
