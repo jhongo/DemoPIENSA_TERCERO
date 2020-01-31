@@ -18,16 +18,15 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
     public FrameRegistroAlumno() {
         initComponents();
         this.setLocationRelativeTo(null);
-        validar.validarletras(txtNombreAlumno);           
-        validar.validarletras(txtApellidosAlumno);         
-
-        
-
+        validar.validarletras(txtNombreAlumno);
+        validar.validarletras(txtApellidosAlumno);
+        txtId.setVisible(false);
 
     }
 
-  
-    
+//    private void formWindowOpened(java.awt.event.WindowEvent evt) {
+//    cmbCursos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione","1ro Basica"," 2do Basica", "3ro Basica", "4to Basica", "5to Basica", "6to Basica", "7mo Basica"}));
+//}
     /*Codigo para validar la cedula*/
     public boolean validadorDeCedula(String cedula) {
         boolean cedulaCorrecta = false;
@@ -101,7 +100,9 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
         txtBuscarAlumno = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        cmbCursos = new javax.swing.JComboBox<String>();
+        txtId = new javax.swing.JTextField();
+        txtCursoEstudiantes = new javax.swing.JTextField();
+        btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -223,7 +224,12 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_498_student__notes__note_education_4212916.png"))); // NOI18N
 
-        cmbCursos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- SELECCIONAR-- ", "1ro Basica", "2do Basica ", "3ro Basica ", "4to Basica ", "5to Basica ", "6to Basica", "7mo Basica" }));
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -233,12 +239,16 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -249,18 +259,18 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnEiminarEstudiantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(txtEdadAlumno)
+                            .addComponent(txtCiAlumno)
+                            .addComponent(txtApellidosAlumno)
+                            .addComponent(txtNombreAlumno)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbCursos, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtEdadAlumno, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-                                    .addComponent(txtCiAlumno)
-                                    .addComponent(txtApellidosAlumno)
-                                    .addComponent(txtNombreAlumno))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txtCursoEstudiantes))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -277,8 +287,14 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnVolver)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBuscarAlumno)
@@ -301,9 +317,9 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
                         .addComponent(txtEdadAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbCursos, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                        .addGap(27, 27, 27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtCursoEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnGuardarEstudiantes)
                             .addComponent(btnEiminarEstudiantes))
@@ -311,7 +327,7 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnMdificarEstudiantes)
                             .addComponent(btnLimpiar)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -322,7 +338,8 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
         txtNombreAlumno.setText(null);
         txtApellidosAlumno.setText(null);
         txtCiAlumno.setText(null);
-        txtEdadAlumno.setText(null);
+        txtEdadAlumno.setText(null); 
+        txtCursoEstudiantes.setText(null);
     }
 
     public void mostrarDatos(String valor) {
@@ -378,23 +395,25 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
 
     private void btnGuardarEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEstudiantesActionPerformed
 
-        PreparedStatement ps = null;
+      
         Connection con = Conexion.conectar();
+//        txtCursoEstudiantes.setText(cmbCursos.getSelectedItem().toString());
 
-        String sql = "Insert into registroestudiantes (nombres,apellidos,ci,edad,curso) VALUES (?,?,?,?,?)";
         try {
-            ps = con.prepareStatement(sql);
-            ps.setString(1, txtNombreAlumno.getText());
-            ps.setString(2, txtApellidosAlumno.getText());
-            ps.setString(3, txtCiAlumno.getText());
-            ps.setString(4, txtEdadAlumno.getText());
-            ps.setString(5, cmbCursos.getSelectedItem().toString());
-            ps.execute();
+            PreparedStatement ps = con.prepareStatement("insert into registroestudiantes values (?,?,?,?,?,?)");
+            ps.setString(1, "0");
+            ps.setString(2, txtNombreAlumno.getText());
+            ps.setString(3, txtApellidosAlumno.getText());
+            ps.setString(4, txtCiAlumno.getText());
+            ps.setString(5, txtEdadAlumno.getText());
+            ps.setString(6, txtCursoEstudiantes.getText());
+            ps.executeUpdate();
+            limpiar();
             JOptionPane.showMessageDialog(null, "Registro Exitoso");
             mostrarDatos("");
-            limpiar();
+            
 
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error" + ex);
 
         } finally {
@@ -410,15 +429,16 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
 
     private void btnEiminarEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEiminarEstudiantesActionPerformed
 
-        PreparedStatement ps = null;
+        int fila = tbAlumnos.getSelectedRow();
+        String cod = "";
+        cod = tbAlumnos.getValueAt(fila, 0).toString();
         Connection con = Conexion.conectar();
         try {
-
-            ps = con.prepareStatement("DELETE FROM registroestudiantes WHERE IdEstudiantes =?");
-            ps.setString(1, txtBuscarAlumno.getText());
-            ps.executeUpdate(); 
+            PreparedStatement ps = con.prepareStatement("DELETE FROM registroestudiantes WHERE IdEstudiantes='" + txtId.getText() + "'");
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registro Eliminado");
             limpiar();
-            
+            mostrarDatos("");
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error" + ex);
@@ -468,67 +488,64 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBuscarAlumnoKeyPressed
 
     private void txtNombreAlumnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreAlumnoKeyTyped
-    if (evt.getKeyChar()>=33 && evt.getKeyChar()<=64
-                || evt.getKeyChar()>= 91 && evt.getKeyChar()<=96
-                || evt.getKeyChar()>=123 && evt.getKeyChar()<=208
-                || evt.getKeyChar()>=210 && evt.getKeyChar()<=240
-                || evt.getKeyChar()>=242 && evt.getKeyChar()<=255){
-                
-                
+        if (evt.getKeyChar() >= 33 && evt.getKeyChar() <= 64
+                || evt.getKeyChar() >= 91 && evt.getKeyChar() <= 96
+                || evt.getKeyChar() >= 123 && evt.getKeyChar() <= 208
+                || evt.getKeyChar() >= 210 && evt.getKeyChar() <= 240
+                || evt.getKeyChar() >= 242 && evt.getKeyChar() <= 255) {
+
             evt.consume();
-        JOptionPane.showMessageDialog(null,"Ingrese solo letras");
-               }
+            JOptionPane.showMessageDialog(null, "Ingrese solo letras");
+        }
     }//GEN-LAST:event_txtNombreAlumnoKeyTyped
 
     private void txtApellidosAlumnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosAlumnoKeyTyped
-        if (evt.getKeyChar()>=33 && evt.getKeyChar()<=64
-                || evt.getKeyChar()>= 91 && evt.getKeyChar()<=96
-                || evt.getKeyChar()>=123 && evt.getKeyChar()<=208
-                || evt.getKeyChar()>=210 && evt.getKeyChar()<=240
-                || evt.getKeyChar()>=242 && evt.getKeyChar()<=255){
-                
-                
+        if (evt.getKeyChar() >= 33 && evt.getKeyChar() <= 64
+                || evt.getKeyChar() >= 91 && evt.getKeyChar() <= 96
+                || evt.getKeyChar() >= 123 && evt.getKeyChar() <= 208
+                || evt.getKeyChar() >= 210 && evt.getKeyChar() <= 240
+                || evt.getKeyChar() >= 242 && evt.getKeyChar() <= 255) {
+
             evt.consume();
-        JOptionPane.showMessageDialog(null,"Ingrese solo letras");
-               }
+            JOptionPane.showMessageDialog(null, "Ingrese solo letras");
+        }
     }//GEN-LAST:event_txtApellidosAlumnoKeyTyped
 
     private void txtEdadAlumnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadAlumnoKeyTyped
-               if (evt.getKeyChar()>=33 && evt.getKeyChar()<=47
-                || evt.getKeyChar()>= 58 && evt.getKeyChar()<=208
-                || evt.getKeyChar()>=210 && evt.getKeyChar()<=240
-                || evt.getKeyChar()>=242 && evt.getKeyChar()<=255){
-                
-                
+        if (evt.getKeyChar() >= 33 && evt.getKeyChar() <= 47
+                || evt.getKeyChar() >= 58 && evt.getKeyChar() <= 208
+                || evt.getKeyChar() >= 210 && evt.getKeyChar() <= 240
+                || evt.getKeyChar() >= 242 && evt.getKeyChar() <= 255) {
+
             evt.consume();
-        JOptionPane.showMessageDialog(null,"Ingrese solo numeros");
-               }
-         int tam=txtEdadAlumno.getText().length();
-            if (tam>=2) {
-                evt.consume();
-             
+            JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
+        }
+        int tam = txtEdadAlumno.getText().length();
+        if (tam >= 2) {
+            evt.consume();
+
         }
     }//GEN-LAST:event_txtEdadAlumnoKeyTyped
 
     private void btnMdificarEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMdificarEstudiantesActionPerformed
-           
-        PreparedStatement ps = null;
-        Connection con = Conexion.conectar();
 
-        String sql = "Update registroestudiantes SET nombres=?, apellidos=?, ci=?, edad=?, curso=? Where IdEstudiantes=?";
+        Connection con = Conexion.conectar();
         try {
-            ps = con.prepareStatement(sql);
+//            String ID = txtBuscarAlumno.getText();
+            PreparedStatement ps = con.prepareStatement("update registroestudiantes set nombres=?, apellidos=?, ci=?, edad=?, curso=? where IdEstudiantes='"+txtId.getText()+"'");
             ps.setString(1, txtNombreAlumno.getText().trim());
             ps.setString(2, txtApellidosAlumno.getText().trim());
             ps.setString(3, txtCiAlumno.getText().trim());
             ps.setString(4, txtEdadAlumno.getText().trim());
-            ps.setString(5, cmbCursos.getSelectedItem().toString());
-            
-            ps.executeUpdate();
-           
+            ps.setString(5, txtCursoEstudiantes.getText().trim());
+            ps.executeUpdate(); 
+            mostrarDatos("");
+            JOptionPane.showMessageDialog(null,"Registro Actualizado"); 
+            limpiar();
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error" + ex);
-             
+
         } finally {
             try {
                 con.close();
@@ -537,41 +554,45 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
             }
 
         }
-    
+
     }//GEN-LAST:event_btnMdificarEstudiantesActionPerformed
 
     private void tbAlumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbAlumnosMouseClicked
-          int seleccion = tbAlumnos.rowAtPoint(evt.getPoint()); 
-        
-            txtNombreAlumno.setText(String.valueOf(tbAlumnos.getValueAt(seleccion, 1).toString()));
-            txtApellidosAlumno.setText(String.valueOf(tbAlumnos.getValueAt(seleccion, 2).toString()));
-            txtCiAlumno.setText(String.valueOf(tbAlumnos.getValueAt(seleccion, 3).toString()));
-            txtEdadAlumno.setText(String.valueOf(tbAlumnos.getValueAt(seleccion, 4).toString()));
-            cmbCursos.setSelectedItem(String.valueOf(tbAlumnos.getValueAt(seleccion, 5).toString()));
-            
+        int seleccion = tbAlumnos.rowAtPoint(evt.getPoint());
+        txtId.setText(String.valueOf(tbAlumnos.getValueAt(seleccion, 0).toString()));
+        txtNombreAlumno.setText(String.valueOf(tbAlumnos.getValueAt(seleccion, 1).toString()));
+        txtApellidosAlumno.setText(String.valueOf(tbAlumnos.getValueAt(seleccion, 2).toString()));
+        txtCiAlumno.setText(String.valueOf(tbAlumnos.getValueAt(seleccion, 3).toString()));
+        txtEdadAlumno.setText(String.valueOf(tbAlumnos.getValueAt(seleccion, 4).toString()));
+        txtCursoEstudiantes.setText(String.valueOf(tbAlumnos.getValueAt(seleccion, 5).toString()));
+
     }//GEN-LAST:event_tbAlumnosMouseClicked
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-       limpiar();
+        limpiar();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void txtCiAlumnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCiAlumnoKeyTyped
-                if (evt.getKeyChar()>=33 && evt.getKeyChar()<=47
-                || evt.getKeyChar()>= 58 && evt.getKeyChar()<=208
-                || evt.getKeyChar()>=210 && evt.getKeyChar()<=240
-                || evt.getKeyChar()>=242 && evt.getKeyChar()<=255){
-                
-                
+        if (evt.getKeyChar() >= 33 && evt.getKeyChar() <= 47
+                || evt.getKeyChar() >= 58 && evt.getKeyChar() <= 208
+                || evt.getKeyChar() >= 210 && evt.getKeyChar() <= 240
+                || evt.getKeyChar() >= 242 && evt.getKeyChar() <= 255) {
+
             evt.consume();
-        JOptionPane.showMessageDialog(null,"Ingrese solo numeros");
-               }
-        
-        int tam=txtCiAlumno.getText().length();
-            if (tam>=10) {
-                evt.consume();
-             
+            JOptionPane.showMessageDialog(null, "Ingrese solo numeros");
+        }
+
+        int tam = txtCiAlumno.getText().length();
+        if (tam >= 10) {
+            evt.consume();
+
         }
     }//GEN-LAST:event_txtCiAlumnoKeyTyped
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -613,7 +634,7 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardarEstudiantes;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnMdificarEstudiantes;
-    private javax.swing.JComboBox<String> cmbCursos;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -627,7 +648,9 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
     private javax.swing.JTextField txtApellidosAlumno;
     public javax.swing.JTextField txtBuscarAlumno;
     private javax.swing.JTextField txtCiAlumno;
+    private javax.swing.JTextField txtCursoEstudiantes;
     private javax.swing.JTextField txtEdadAlumno;
+    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombreAlumno;
     // End of variables declaration//GEN-END:variables
 }

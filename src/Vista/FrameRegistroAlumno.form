@@ -27,12 +27,17 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="jLabel1" min="-2" pref="64" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel1" min="-2" pref="64" max="-2" attributes="0"/>
+                          <Component id="btnVolver" min="-2" pref="87" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="txtId" min="-2" pref="48" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -47,20 +52,20 @@
                                   <Component id="btnLimpiar" max="32767" attributes="0"/>
                               </Group>
                           </Group>
+                          <Component id="txtEdadAlumno" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtCiAlumno" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtApellidosAlumno" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtNombreAlumno" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel3" alignment="0" min="-2" pref="64" max="-2" attributes="0"/>
                                   <Component id="jLabel4" alignment="0" min="-2" pref="64" max="-2" attributes="0"/>
                                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel5" alignment="0" min="-2" pref="64" max="-2" attributes="0"/>
-                                  <Component id="cmbCursos" alignment="0" min="-2" pref="124" max="-2" attributes="0"/>
-                                  <Component id="txtEdadAlumno" alignment="0" pref="191" max="32767" attributes="0"/>
-                                  <Component id="txtCiAlumno" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtApellidosAlumno" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtNombreAlumno" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="txtCursoEstudiantes" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -86,8 +91,16 @@
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                       <Component id="jLabel6" min="-2" pref="27" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="txtId" min="-2" pref="31" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnVolver" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="17" max="32767" attributes="0"/>
+              <EmptySpace pref="16" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                   <Component id="txtBuscarAlumno" alignment="3" max="32767" attributes="0"/>
@@ -111,9 +124,9 @@
                       <Component id="txtEdadAlumno" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel5" min="-2" pref="24" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="cmbCursos" pref="31" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="txtCursoEstudiantes" min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnGuardarEstudiantes" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnEiminarEstudiantes" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -124,7 +137,7 @@
                           <Component id="btnLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jScrollPane1" alignment="1" pref="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -298,24 +311,17 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cmbCursos">
+    <Component class="javax.swing.JTextField" name="txtId">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtCursoEstudiantes">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnVolver">
       <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="8">
-            <StringItem index="0" value="-- SELECCIONAR-- "/>
-            <StringItem index="1" value="1ro Basica"/>
-            <StringItem index="2" value="2do Basica "/>
-            <StringItem index="3" value="3ro Basica "/>
-            <StringItem index="4" value="4to Basica "/>
-            <StringItem index="5" value="5to Basica "/>
-            <StringItem index="6" value="6to Basica"/>
-            <StringItem index="7" value="7mo Basica"/>
-          </StringArray>
-        </Property>
+        <Property name="text" type="java.lang.String" value="Volver"/>
       </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-      </AuxValues>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVolverActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
