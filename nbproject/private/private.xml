@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/DemoPIENSA_TERCERO/src/Vista/Login.java</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/DemoPIENSA_TERCERO/src/Vista/FrameRegistroDocentes.java</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/DemoPIENSA_TERCERO/src/Vista/FrameLogin.java</file>
-            <file>file:/C:/Users/USER/Documents/NetBeansProjects/DemoPIENSA_TERCERO/src/Vista/FrameRegistroAlumno.java</file>
+            <file>file:/C:/Users/hidal/Documents/NetBeansProjects/DemoPIENSA_TERCERO/src/Vista/FrameEvaluacion.java</file>
+            <file>file:/C:/Users/hidal/Documents/NetBeansProjects/DemoPIENSA_TERCERO/src/Vista/FrameRegistroAlumno.java</file>
+            <file>file:/C:/Users/hidal/Documents/NetBeansProjects/DemoPIENSA_TERCERO/src/Vista/FrameRegistroDocentes.java</file>
+            <file>file:/C:/Users/hidal/Documents/NetBeansProjects/DemoPIENSA_TERCERO/src/Vista/Login.java</file>
+            <file>file:/C:/Users/hidal/Documents/NetBeansProjects/DemoPIENSA_TERCERO/src/Vista/FrameSeleccionar.java</file>
         </group>
     </open-files>
 </project-private>

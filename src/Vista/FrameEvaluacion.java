@@ -1,18 +1,46 @@
 package Vista;
 
+import Modelo.Conexion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 public class FrameEvaluacion extends javax.swing.JFrame {
+    
+    String user="", alumno_update="";
+    int ID;
     String tiempo;
-
+    
     public FrameEvaluacion() {
         initComponents();
+        setTitle("Evaluación");
         this.setLocationRelativeTo(null);
-        jpTiempo.setEnabled(false);
         
+        alumno_update=FrameSeleccionar.alumno_update;
+        jpTiempo.setEnabled(false);        
         t = new Timer(10, acciones);
+        /*Cargar datos seleccionados*/
+                try {
+            Connection cn=Conexion.conectar();
+            PreparedStatement pst = cn.prepareStatement("select * from registroestudiantes where nombres='"+alumno_update+"' ");              
+            ResultSet rs=pst.executeQuery();
+            if (rs.next()) {
+                ID=rs.getInt("IdEstudiantes");
+                txtNombre.setText(rs.getString("nombres"));
+                txtApellidos.setText(rs.getString("apellidos"));
+                txtCurso.setText(rs.getString("ci"));
+                txtEdad.setText(rs.getString("edad"));
+                txtEdad.setText(rs.getString("curso"));
+                rs.close();                
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error al Descargar datos"+ e);
+        }
     }
 
    

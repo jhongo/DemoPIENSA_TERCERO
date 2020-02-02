@@ -8,7 +8,9 @@ import Modelo.registroDocentes;
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
 public class FrameRegistroAlumno extends javax.swing.JFrame {
@@ -17,6 +19,9 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
 
     public FrameRegistroAlumno() {
         initComponents();
+         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Registro Alumno");
+        mostrarDatos("");
         this.setLocationRelativeTo(null);
         validar.validarletras(txtNombreAlumno);
         validar.validarletras(txtApellidosAlumno);
@@ -103,6 +108,7 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
         txtId = new javax.swing.JTextField();
         txtCursoEstudiantes = new javax.swing.JTextField();
         btnVolver = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -181,6 +187,7 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbAlumnos);
 
+        btnEiminarEstudiantes.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
         btnEiminarEstudiantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_f-cross_256_282471.png"))); // NOI18N
         btnEiminarEstudiantes.setText("Eiminar");
         btnEiminarEstudiantes.addActionListener(new java.awt.event.ActionListener() {
@@ -189,6 +196,7 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
             }
         });
 
+        btnMdificarEstudiantes.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
         btnMdificarEstudiantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_agt_reload_15581.png"))); // NOI18N
         btnMdificarEstudiantes.setText("Modificar");
         btnMdificarEstudiantes.addActionListener(new java.awt.event.ActionListener() {
@@ -197,6 +205,7 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
             }
         });
 
+        btnGuardarEstudiantes.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
         btnGuardarEstudiantes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_floppy_285657.png"))); // NOI18N
         btnGuardarEstudiantes.setText("Guardar");
         btnGuardarEstudiantes.addActionListener(new java.awt.event.ActionListener() {
@@ -205,6 +214,7 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
             }
         });
 
+        btnLimpiar.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_edit-clear_23227.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -213,6 +223,11 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
             }
         });
 
+        txtBuscarAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarAlumnoActionPerformed(evt);
+            }
+        });
         txtBuscarAlumno.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtBuscarAlumnoKeyPressed(evt);
@@ -224,10 +239,26 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_498_student__notes__note_education_4212916.png"))); // NOI18N
 
+        btnVolver.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_f-left_256_282467.png"))); // NOI18N
         btnVolver.setText("Volver");
+        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnVolverMouseReleased(evt);
+            }
+        });
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
+            }
+        });
+
+        jButton1.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_document-03_1622833.png"))); // NOI18N
+        jButton1.setText("Evaluar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -241,7 +272,7 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnVolver))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -272,12 +303,17 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(txtCursoEstudiantes))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtBuscarAlumno))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtBuscarAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(124, 124, 124)))
                         .addGap(64, 64, 64))))
         );
         layout.setVerticalGroup(
@@ -294,13 +330,13 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnVolver)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBuscarAlumno)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txtNombreAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -317,7 +353,7 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
                         .addComponent(txtEdadAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCursoEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -326,9 +362,13 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnMdificarEstudiantes)
-                            .addComponent(btnLimpiar)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnLimpiar))
+                        .addContainerGap(22, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))))
         );
 
         pack();
@@ -345,7 +385,7 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
     public void mostrarDatos(String valor) {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID");
-        model.addColumn("NOMBRE");
+        model.addColumn("NOMBRES");
         model.addColumn("APELLIDOS");
         model.addColumn("CI");
         model.addColumn("EDAD");
@@ -357,7 +397,7 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
             sql = "select * from registroestudiantes";
         } else {
             sql = "select IdEstudiantes ID, nombres NOMBRES, apellidos APELLIDOS,ci CI , edad EDAD,curso CURSO"
-                    + " from registroestudiantes where IdEstudiante = '" + txtBuscarAlumno.getText() + "'";
+                    + " from registroestudiantes where IdEstudiantes = '" + txtBuscarAlumno.getText() + "'";
         }
         String dato[] = new String[7];
 
@@ -591,8 +631,21 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         this.setVisible(false);
-        
+
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnVolverMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseReleased
+ 
+    }//GEN-LAST:event_btnVolverMouseReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        FrameSeleccionar seleccionar = new FrameSeleccionar();
+        seleccionar.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtBuscarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarAlumnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscarAlumnoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -635,6 +688,7 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnMdificarEstudiantes;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

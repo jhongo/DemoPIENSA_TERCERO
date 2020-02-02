@@ -4,8 +4,8 @@ import Modelo.ConsultaDocentes;
 import Modelo.hash;
 import Modelo.registroDocentes;
 import Vista.FrameEvaluacion;
-import Vista.FrameInicio;
-import Vista.FrameLogin;
+
+import Vista.Login;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;

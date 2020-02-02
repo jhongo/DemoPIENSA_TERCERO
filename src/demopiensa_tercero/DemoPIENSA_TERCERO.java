@@ -4,9 +4,8 @@ import Controlador.CtrDocentes;
 import Controlador.CtrLogin;
 import Modelo.ConsultaDocentes;
 import Modelo.registroDocentes;
-import Vista.FrameInicio;
-import Vista.FrameLogin;
 import Vista.FrameRegistroDocentes;
+import Vista.Login;
 
 public class DemoPIENSA_TERCERO {
 
@@ -31,6 +30,8 @@ public class DemoPIENSA_TERCERO {
 //        
 //        FrameInicio frmI = new FrameInicio();
 //        frmL.setVisible(true);
+        Login n = new Login();
+        n.setVisible(true);
     }
     
 }
