@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Cesar hidalgo
  */
 public class FrameSeleccionar extends javax.swing.JFrame {
-    String user;
+
 public static String alumno_update;
 DefaultTableModel mode1 = new DefaultTableModel();
 
@@ -72,7 +72,7 @@ DefaultTableModel mode1 = new DefaultTableModel();
        }
        }
     });
-    }
+    }/*
 public void mostrarDatos(String valor) {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("ID");
@@ -110,7 +110,7 @@ public void mostrarDatos(String valor) {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "ERROR" + e);
         }
-}
+}*/
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
