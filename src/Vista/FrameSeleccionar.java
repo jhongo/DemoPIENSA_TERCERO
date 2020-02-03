@@ -64,7 +64,7 @@ DefaultTableModel mode1 = new DefaultTableModel();
        @Override
        public void mouseClicked(MouseEvent e){
        int fila_point=tbalumnos.rowAtPoint(e.getPoint());
-       int columna=2;
+       int columna=1;
        if (fila_point>-1){
            alumno_update=(String)mode1.getValueAt(fila_point, columna);
            FrameEvaluacion informacion=new FrameEvaluacion();
