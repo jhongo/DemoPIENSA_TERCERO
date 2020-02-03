@@ -69,6 +69,7 @@ DefaultTableModel mode1 = new DefaultTableModel();
            alumno_update=(String)mode1.getValueAt(fila_point, columna);
            FrameEvaluacion informacion=new FrameEvaluacion();
            informacion.setVisible(true);
+           FrameSeleccionar selec=new FrameSeleccionar();
        }
        }
     });
@@ -258,6 +259,8 @@ public void mostrarDatos(String valor) {
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         this.setVisible(false);
+        FrameEvaluacion eva = new FrameEvaluacion();
+        eva.setVisible(true);
     }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
