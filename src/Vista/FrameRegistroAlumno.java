@@ -26,6 +26,16 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
         validar.validarletras(txtNombreAlumno);
         validar.validarletras(txtApellidosAlumno);
         txtId.setVisible(false);
+        
+        /*cargar datos en el combo*/
+         try {
+            Connection cn=Conexion.conectar();
+            PreparedStatement ps=cn.prepareStatement("select * from curso"); 
+            ResultSet rs =ps.executeQuery();
+            while(rs.next()){cmbcurso.addItem(rs.getString("nombre_curso"));}
+        } catch (Exception e) {
+        }
+        
 
     }
 
@@ -75,10 +85,7 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
 
         if (!cedulaCorrecta) {
             JOptionPane.showMessageDialog(null, "La Cédula ingresada es Incorrecta");
-        } else {
-            JOptionPane.showMessageDialog(null, "Cedula Correcta");
-
-        }
+        } 
         return cedulaCorrecta;
     }
 
@@ -106,8 +113,8 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
-        txtCursoEstudiantes = new javax.swing.JTextField();
         btnVolver = new javax.swing.JButton();
+        cmbcurso = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -252,6 +259,8 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
             }
         });
 
+        cmbcurso.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "---------" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -289,9 +298,9 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(txtCursoEstudiantes))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmbcurso, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -317,7 +326,7 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnVolver)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtBuscarAlumno)
@@ -340,20 +349,18 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
                         .addComponent(txtEdadAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCursoEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cmbcurso, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnGuardarEstudiantes)
                             .addComponent(btnEiminarEstudiantes))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnMdificarEstudiantes)
-                            .addComponent(btnLimpiar))
-                        .addContainerGap(22, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 145, Short.MAX_VALUE))))
+                            .addComponent(btnLimpiar)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -364,7 +371,8 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
         txtApellidosAlumno.setText(null);
         txtCiAlumno.setText(null);
         txtEdadAlumno.setText(null); 
-        txtCursoEstudiantes.setText(null);
+        
+
     }
 
     public void mostrarDatos(String valor) {
@@ -431,12 +439,15 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
             ps.setString(3, txtApellidosAlumno.getText());
             ps.setString(4, txtCiAlumno.getText());
             ps.setString(5, txtEdadAlumno.getText());
-            ps.setString(6, txtCursoEstudiantes.getText());
+            ps.setString(6, cmbcurso.getSelectedItem().toString());
+            if (validadorDeCedula(txtCiAlumno.getText())==false) {
+           
+            }else{
             ps.executeUpdate();
             limpiar();
             JOptionPane.showMessageDialog(null, "Registro Exitoso");
             mostrarDatos("");
-            
+            }
 
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error" + ex);
@@ -562,7 +573,7 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
             ps.setString(2, txtApellidosAlumno.getText().trim());
             ps.setString(3, txtCiAlumno.getText().trim());
             ps.setString(4, txtEdadAlumno.getText().trim());
-            ps.setString(5, txtCursoEstudiantes.getText().trim());
+            ps.setString(5, cmbcurso.getSelectedItem().toString().trim());
             ps.executeUpdate(); 
             mostrarDatos("");
             JOptionPane.showMessageDialog(null,"Registro Actualizado"); 
@@ -589,7 +600,7 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
         txtApellidosAlumno.setText(String.valueOf(tbAlumnos.getValueAt(seleccion, 2).toString()));
         txtCiAlumno.setText(String.valueOf(tbAlumnos.getValueAt(seleccion, 3).toString()));
         txtEdadAlumno.setText(String.valueOf(tbAlumnos.getValueAt(seleccion, 4).toString()));
-        txtCursoEstudiantes.setText(String.valueOf(tbAlumnos.getValueAt(seleccion, 5).toString()));
+        cmbcurso.setSelectedItem(String.valueOf(tbAlumnos.getValueAt(seleccion, 5).toString()));
 
     }//GEN-LAST:event_tbAlumnosMouseClicked
 
@@ -615,7 +626,9 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCiAlumnoKeyTyped
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        FrameEvaluacion eva = new FrameEvaluacion();
         this.setVisible(false);
+        eva.setVisible(true);
 
     }//GEN-LAST:event_btnVolverActionPerformed
 
@@ -668,6 +681,7 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnMdificarEstudiantes;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JComboBox cmbcurso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -681,7 +695,6 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
     private javax.swing.JTextField txtApellidosAlumno;
     public javax.swing.JTextField txtBuscarAlumno;
     private javax.swing.JTextField txtCiAlumno;
-    private javax.swing.JTextField txtCursoEstudiantes;
     private javax.swing.JTextField txtEdadAlumno;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombreAlumno;
