@@ -88,19 +88,18 @@ public class FrameEvaluacion extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        cmbsensibilidad = new javax.swing.JComboBox<>();
-        cmbfuerzamuscular = new javax.swing.JComboBox<>();
-        cmbcoordinacion = new javax.swing.JComboBox<>();
-        cmbplaneacion = new javax.swing.JComboBox<>();
+        cmbsensibilidad = new javax.swing.JComboBox<String>();
+        cmbfuerzamuscular = new javax.swing.JComboBox<String>();
+        cmbcoordinacion = new javax.swing.JComboBox<String>();
+        cmbplaneacion = new javax.swing.JComboBox<String>();
         txtTiempoEvaluacion = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jLabel15 = new javax.swing.JLabel();
         btnRegistrarEstudiantes = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         btnIniciarJuego = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -248,13 +247,13 @@ public class FrameEvaluacion extends javax.swing.JFrame {
 
         jLabel13.setText("SENSIBILIDAD NORMAL:");
 
-        cmbsensibilidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONES--", "BAJA", "MEDIA", "ALTA" }));
+        cmbsensibilidad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--SELECCIONES--", "BAJA", "MEDIA", "ALTA" }));
 
-        cmbfuerzamuscular.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONES--", "BAJA", "MEDIA", "ALTA" }));
+        cmbfuerzamuscular.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--SELECCIONES--", "BAJA", "MEDIA", "ALTA" }));
 
-        cmbcoordinacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONES--", "BAJA", "MEDIA", "ALTA" }));
+        cmbcoordinacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--SELECCIONES--", "BAJA", "MEDIA", "ALTA" }));
 
-        cmbplaneacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONE--", "BAJA", "MEDIA", "ALTA" }));
+        cmbplaneacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--SELECCIONE--", "BAJA", "MEDIA", "ALTA" }));
 
         jLabel5.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
         jLabel5.setText("Diagnóstico de la Evaluación");
@@ -313,19 +312,6 @@ public class FrameEvaluacion extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_130-man-student-2_3099383.png"))); // NOI18N
 
         btnRegistrarEstudiantes.setFont(new java.awt.Font("Georgia", 1, 18)); // NOI18N
@@ -334,15 +320,6 @@ public class FrameEvaluacion extends javax.swing.JFrame {
         btnRegistrarEstudiantes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarEstudiantesActionPerformed(evt);
-            }
-        });
-
-        jButton2.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_floppy_285657.png"))); // NOI18N
-        jButton2.setText("<html>Guardar Evaluacion</html> ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
             }
         });
 
@@ -364,6 +341,24 @@ public class FrameEvaluacion extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_floppy_285657.png"))); // NOI18N
+        jButton2.setText("<html>Guardar Evaluacion</html> ");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_Clipboard_5605561.png"))); // NOI18N
+        jButton3.setText("<html>Evaluaciones Realizadas</html> ");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -371,7 +366,6 @@ public class FrameEvaluacion extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(Jpestudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
@@ -382,12 +376,13 @@ public class FrameEvaluacion extends javax.swing.JFrame {
                         .addComponent(btnRegistrarEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(btnIniciarJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(btnIniciarJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -407,11 +402,11 @@ public class FrameEvaluacion extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Jpestudiantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(351, 351, 351))
+                .addGap(49, 49, 49)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -594,7 +589,7 @@ public class FrameEvaluacion extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(62, 62, 62))
         );
@@ -655,40 +650,6 @@ public class FrameEvaluacion extends javax.swing.JFrame {
         seleccionar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-      
-        Connection con = Conexion.conectar();
-//        txtCursoEstudiantes.setText(cmbCursos.getSelectedItem().toString());
-
-        try {
-            PreparedStatement ps = con.prepareStatement("insert into datosevaluacion values (?,?,?,?,?,?,?)");
-            ps.setString(1, "0");
-            ps.setString(2, txtTiempoEvaluacion.getText());
-            ps.setString(3, cmbplaneacion.getSelectedItem().toString());
-            ps.setString(4, cmbcoordinacion.getSelectedItem().toString());
-            ps.setString(5, cmbfuerzamuscular.getSelectedItem().toString());
-            ps.setString(6, cmbsensibilidad.getSelectedItem().toString());
-            ps.setString(7, txtid.getText());
-
-            ps.executeUpdate();
-            limpiar();
-            JOptionPane.showMessageDialog(null, "Registro Exitoso");           
-            
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error" + ex);
-
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException e) {
-                System.out.println(e);
-            }
-
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnGraficaEstadisticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficaEstadisticaActionPerformed
         
@@ -757,6 +718,44 @@ public class FrameEvaluacion extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnGraficaEstadisticaActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        Connection con = Conexion.conectar();
+        //        txtCursoEstudiantes.setText(cmbCursos.getSelectedItem().toString());
+
+        try {
+            PreparedStatement ps = con.prepareStatement("insert into datosevaluacion (idevaluacion, tiempo, planeacion, coordinacion, fuerza_muscular, sensibilidad, idestudiante)  values (?,?,?,?,?,?,?)");
+            ps.setString(1, "0");
+            ps.setString(2, txtTiempoEvaluacion.getText());
+            ps.setString(3, cmbplaneacion.getSelectedItem().toString());
+            ps.setString(4, cmbcoordinacion.getSelectedItem().toString());
+            ps.setString(5, cmbfuerzamuscular.getSelectedItem().toString());
+            ps.setString(6, cmbsensibilidad.getSelectedItem().toString());
+            ps.setString(7, txtid.getText());
+
+            ps.executeUpdate();
+            limpiar();
+            JOptionPane.showMessageDialog(null, "Registro Exitoso");
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error" + ex);
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.setVisible(false);
+        FrameReportesEstudiantes report = new FrameReportesEstudiantes();
+        report.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -805,6 +804,7 @@ public class FrameEvaluacion extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbsensibilidad;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -830,8 +830,6 @@ public class FrameEvaluacion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel jpTiempo;
     private javax.swing.JPanel jpTiempo1;
     private javax.swing.JLabel lblTiempo;
