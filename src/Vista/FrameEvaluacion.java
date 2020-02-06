@@ -9,6 +9,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 public class FrameEvaluacion extends javax.swing.JFrame {
     
@@ -26,7 +31,7 @@ public class FrameEvaluacion extends javax.swing.JFrame {
         
         alumno_update=FrameSeleccionar.alumno_update;
         jpTiempo.setEnabled(false);        
-        t = new Timer(10, acciones);
+//        t = new Timer(10, acciones);
         /*Cargar datos seleccionados*/
                 try {
             Connection cn=Conexion.conectar();
@@ -83,10 +88,10 @@ public class FrameEvaluacion extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        cmbsensibilidad = new javax.swing.JComboBox<String>();
-        cmbfuerzamuscular = new javax.swing.JComboBox<String>();
-        cmbcoordinacion = new javax.swing.JComboBox<String>();
-        cmbplaneacion = new javax.swing.JComboBox<String>();
+        cmbsensibilidad = new javax.swing.JComboBox<>();
+        cmbfuerzamuscular = new javax.swing.JComboBox<>();
+        cmbcoordinacion = new javax.swing.JComboBox<>();
+        cmbplaneacion = new javax.swing.JComboBox<>();
         txtTiempoEvaluacion = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -100,10 +105,18 @@ public class FrameEvaluacion extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jpTiempo = new javax.swing.JPanel();
-        etiquetaTiempo = new javax.swing.JLabel();
-        btnStart = new javax.swing.JButton();
-        btnPause = new javax.swing.JButton();
-        btnStop = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
+        lblTiempo = new javax.swing.JLabel();
+        btnJuego = new javax.swing.JButton();
+        jpTiempo1 = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        txtMin = new javax.swing.JTextField();
+        txtSeg = new javax.swing.JTextField();
+        txtMils = new javax.swing.JTextField();
+        btnGraficaEstadistica = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -235,13 +248,13 @@ public class FrameEvaluacion extends javax.swing.JFrame {
 
         jLabel13.setText("SENSIBILIDAD NORMAL:");
 
-        cmbsensibilidad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--SELECCIONES--", "BAJA", "MEDIA", "ALTA" }));
+        cmbsensibilidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONES--", "BAJA", "MEDIA", "ALTA" }));
 
-        cmbfuerzamuscular.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--SELECCIONES--", "BAJA", "MEDIA", "ALTA" }));
+        cmbfuerzamuscular.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONES--", "BAJA", "MEDIA", "ALTA" }));
 
-        cmbcoordinacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--SELECCIONES--", "BAJA", "MEDIA", "ALTA" }));
+        cmbcoordinacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONES--", "BAJA", "MEDIA", "ALTA" }));
 
-        cmbplaneacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--SELECCIONE--", "BAJA", "MEDIA", "ALTA" }));
+        cmbplaneacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONE--", "BAJA", "MEDIA", "ALTA" }));
 
         jLabel5.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
         jLabel5.setText("Diagnóstico de la Evaluación");
@@ -410,32 +423,13 @@ public class FrameEvaluacion extends javax.swing.JFrame {
 
         jpTiempo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        etiquetaTiempo.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
-        etiquetaTiempo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        etiquetaTiempo.setText("00:00:00:00");
+        jLabel18.setText("TIEMPO");
 
-        btnStart.setText("Iniciar");
-        btnStart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnStartActionPerformed(evt);
-            }
-        });
+        lblTiempo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btnPause.setText("Pausar");
-        btnPause.setEnabled(false);
-        btnPause.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPauseActionPerformed(evt);
-            }
-        });
-
-        btnStop.setText("Detener");
-        btnStop.setEnabled(false);
-        btnStop.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnStopActionPerformed(evt);
-            }
-        });
+        btnJuego.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/play.png"))); // NOI18N
+        btnJuego.setText("INICIAR");
+        btnJuego.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout jpTiempoLayout = new javax.swing.GroupLayout(jpTiempo);
         jpTiempo.setLayout(jpTiempoLayout);
@@ -444,27 +438,97 @@ public class FrameEvaluacion extends javax.swing.JFrame {
             .addGroup(jpTiempoLayout.createSequentialGroup()
                 .addGroup(jpTiempoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpTiempoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(btnPause, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnStop, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpTiempoLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(etiquetaTiempo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jpTiempoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpTiempoLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jpTiempoLayout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addComponent(lblTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 28, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpTiempoLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jpTiempoLayout.setVerticalGroup(
             jpTiempoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpTiempoLayout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
-                .addComponent(etiquetaTiempo)
-                .addGap(29, 29, 29)
-                .addGroup(jpTiempoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnStart)
-                    .addComponent(btnPause)
-                    .addComponent(btnStop))
+                .addContainerGap()
+                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jpTiempo1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel19.setText("Ingresar tiempo");
+
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel20.setText("Minutos:");
+
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel21.setText("Segundos:");
+
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel22.setText("Milisegundos:");
+
+        btnGraficaEstadistica.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/graph.png"))); // NOI18N
+        btnGraficaEstadistica.setText("Graficar");
+        btnGraficaEstadistica.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnGraficaEstadistica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGraficaEstadisticaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpTiempo1Layout = new javax.swing.GroupLayout(jpTiempo1);
+        jpTiempo1.setLayout(jpTiempo1Layout);
+        jpTiempo1Layout.setHorizontalGroup(
+            jpTiempo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpTiempo1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpTiempo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpTiempo1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(jpTiempo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jpTiempo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtMin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtSeg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMils, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(98, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpTiempo1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGraficaEstadistica, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jpTiempo1Layout.setVerticalGroup(
+            jpTiempo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpTiempo1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpTiempo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpTiempo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSeg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpTiempo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMils, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGraficaEstadistica, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -473,12 +537,18 @@ public class FrameEvaluacion extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addGap(29, 29, 29)
-                .addComponent(jpTiempo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jpTiempo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)))
+                .addComponent(jpTiempo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -487,14 +557,14 @@ public class FrameEvaluacion extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jpTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel7))
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addGap(34, 34, 34)
-                            .addComponent(jLabel6))))
+                        .addComponent(jLabel7))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel6)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jpTiempo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpTiempo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -532,36 +602,36 @@ public class FrameEvaluacion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    private Timer t;
-    private int h, m, s, cs;
-    private ActionListener acciones = new ActionListener(){
-
-        @Override
-        public void actionPerformed(ActionEvent ae) {
-            ++cs; 
-            if(cs==100){
-                cs = 0;
-                ++s;
-            }
-            if(s==60) 
-            {
-                s = 0;
-                ++m;
-            }
-            if(m==60)
-            {
-                m = 0;
-                ++h;
-            }
-            actualizarLabel();
-        }
-        
-    };
-     private void actualizarLabel() {
-      tiempo = (h<=9?"0":"")+h+":"+(m<=9?"0":"")+m+":"+(s<=9?"0":"")+s+":"+(cs<=9?"0":"")+cs;
-        etiquetaTiempo.setText(tiempo); 
-      
-    } 
+//    private Timer t;
+//    private int h, m, s, cs;
+//    private ActionListener acciones = new ActionListener(){
+//
+//        @Override
+//        public void actionPerformed(ActionEvent ae) {
+//            ++cs; 
+//            if(cs==100){
+//                cs = 0;
+//                ++s;
+//            }
+//            if(s==60) 
+//            {
+//                s = 0;
+//                ++m;
+//            }
+//            if(m==60)
+//            {
+//                m = 0;
+//                ++h;
+//            }
+//            actualizarLabel();
+//        }
+//        
+//    };
+//     private void actualizarLabel() {
+//      tiempo = (h<=9?"0":"")+h+":"+(m<=9?"0":"")+m+":"+(s<=9?"0":"")+s+":"+(cs<=9?"0":"")+cs;
+//        etiquetaTiempo.setText(tiempo); 
+//      
+//    } 
      
      
      
@@ -579,37 +649,6 @@ public class FrameEvaluacion extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_btnRegistrarEstudiantesActionPerformed
-
-    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        t.start();
-        btnStart.setEnabled(false);
-        btnStart.setText("Reanudar");
-        btnPause.setEnabled(true);
-        btnStop.setEnabled(true);
-    }//GEN-LAST:event_btnStartActionPerformed
-
-    private void btnPauseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPauseActionPerformed
-        t.stop();
-        btnStart.setEnabled(true);
-        btnPause.setEnabled(false); 
-          txtTiempoEvaluacion.setText(tiempo);
-        
-    }//GEN-LAST:event_btnPauseActionPerformed
-
-    private void btnStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStopActionPerformed
-        if(t.isRunning())
-        {
-            t.stop();
-            btnStart.setEnabled(true);
-        }
-        btnStart.setText("Iniciar");
-        btnPause.setEnabled(false);
-        btnStop.setEnabled(false);
-        txtTiempoEvaluacion.setText(tiempo);
-       
-        h=0; m=0; s=0; cs=0;
-        actualizarLabel();
-    }//GEN-LAST:event_btnStopActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         FrameSeleccionar seleccionar = new FrameSeleccionar();
@@ -651,6 +690,73 @@ public class FrameEvaluacion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void btnGraficaEstadisticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficaEstadisticaActionPerformed
+        
+         int minutos, segundos, milisegundos;
+        minutos = Integer.parseInt(txtMin.getText());
+        segundos = Integer.parseInt(txtSeg.getText());
+        milisegundos = Integer.parseInt(txtMils.getText());
+
+        if (minutos < 1 && segundos < 30 && milisegundos <= 90) {
+            try {
+                DefaultCategoryDataset ds = new DefaultCategoryDataset();
+                ds.addValue(20, "Alto", "Coordinacion");
+                ds.addValue(20, "Alto", "Planeacion");
+                ds.addValue(20, "Alto", "Fuerza");
+                ds.addValue(20, "Alto", "Sensibiidad");
+
+                JFreeChart jf = ChartFactory.createBarChart("Diagnostico", "Puntuación", "Parametro", ds, PlotOrientation.VERTICAL, true, true, true);
+
+                ChartFrame f = new ChartFrame("Edades", jf);
+                f.setSize(500, 300);
+                f.setLocationRelativeTo(null);
+                f.setVisible(true);
+            } catch (Exception e) {
+                System.out.println("ERROR" + e);
+            }
+
+        } else{
+            try {
+                DefaultCategoryDataset ds = new DefaultCategoryDataset();
+                ds.addValue(15, "Baja", "Coordinacion");
+                ds.addValue(20, "Media", "Planeacion");
+                ds.addValue(15, "Baja", "Fuerza");
+                ds.addValue(23, "Alta", "Sensibiidad");
+
+
+                JFreeChart jf = ChartFactory.createBarChart("Diagnostico", "Parametro", "Puntuación", ds, PlotOrientation.VERTICAL, true, true, true);
+
+                ChartFrame f = new ChartFrame("Edades", jf);
+                f.setSize(500, 300);
+                f.setLocationRelativeTo(null);
+                f.setVisible(true);
+            } catch (Exception e) {
+                System.out.println("ERROR" + e);
+            }
+        }
+
+        if (minutos == 2 && segundos == 30 && milisegundos == 30) {
+            try {
+                DefaultCategoryDataset ds = new DefaultCategoryDataset();
+                ds.addValue(25, "Nico", "Coordinacion");
+                ds.addValue(25, "pepe", "Planeacion");
+                ds.addValue(25, "sergio", "Fuerza");
+                ds.addValue(25, "MARTIN", "Sensibiidad");
+
+                JFreeChart jf = ChartFactory.createBarChart("alumnos", "Nombres", "Edades", ds, PlotOrientation.VERTICAL, true, true, true);
+
+                ChartFrame f = new ChartFrame("Edades", jf);
+                f.setSize(500, 300);
+                f.setLocationRelativeTo(null);
+                f.setVisible(true);
+            } catch (Exception e) {
+                System.out.println("ERROR" + e);
+            }
+
+        }
+        
+    }//GEN-LAST:event_btnGraficaEstadisticaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -688,17 +794,15 @@ public class FrameEvaluacion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Jpestudiantes;
+    private javax.swing.JButton btnGraficaEstadistica;
     private javax.swing.JButton btnIniciarJuego;
-    private javax.swing.JButton btnPause;
+    private javax.swing.JButton btnJuego;
     private javax.swing.JButton btnRegistrarEstudiantes;
-    private javax.swing.JButton btnStart;
-    private javax.swing.JButton btnStop;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cmbcoordinacion;
     private javax.swing.JComboBox<String> cmbfuerzamuscular;
     private javax.swing.JComboBox<String> cmbplaneacion;
     private javax.swing.JComboBox<String> cmbsensibilidad;
-    private javax.swing.JLabel etiquetaTiempo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -710,7 +814,12 @@ public class FrameEvaluacion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -724,6 +833,11 @@ public class FrameEvaluacion extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel jpTiempo;
+    private javax.swing.JPanel jpTiempo1;
+    private javax.swing.JLabel lblTiempo;
+    private javax.swing.JTextField txtMils;
+    private javax.swing.JTextField txtMin;
+    private javax.swing.JTextField txtSeg;
     private javax.swing.JTextField txtTiempoEvaluacion;
     private javax.swing.JLabel txtapellidos;
     private javax.swing.JLabel txtci;
