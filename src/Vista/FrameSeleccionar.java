@@ -66,10 +66,7 @@ DefaultTableModel mode1 = new DefaultTableModel();
        int fila_point=tbalumnos.rowAtPoint(e.getPoint());
        int columna=1;
        if (fila_point>-1){
-           alumno_update=(String)mode1.getValueAt(fila_point, columna);
-          
-           FrameSeleccionar selec=new FrameSeleccionar();
-           selec.dispose();
+           alumno_update=(String)mode1.getValueAt(fila_point, columna);          
        }
        }
     });
@@ -142,6 +139,11 @@ public void mostrarDatos(String valor) {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbalumnos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbalumnosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbalumnos);
 
         txtbuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -253,13 +255,17 @@ public void mostrarDatos(String valor) {
         }
     }//GEN-LAST:event_txtbuscarKeyPressed
 
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+
+    }//GEN-LAST:event_btnVolverActionPerformed
+
     private void btnVolverMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseReleased
 
     }//GEN-LAST:event_btnVolverMouseReleased
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-       this.dispose();
-    }//GEN-LAST:event_btnVolverActionPerformed
+    private void tbalumnosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbalumnosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbalumnosMouseClicked
 
     /**
      * @param args the command line arguments
