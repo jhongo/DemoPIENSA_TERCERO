@@ -140,7 +140,7 @@ public class FrameEvaluacion extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         btnRegistrarEstudiantes = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        txtEvaluar = new javax.swing.JButton();
         btnIniciarJuego = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -368,12 +368,12 @@ public class FrameEvaluacion extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_document-03_1622833.png"))); // NOI18N
-        jButton1.setText("Evaluar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        txtEvaluar.setFont(new java.awt.Font("Georgia", 1, 14)); // NOI18N
+        txtEvaluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_document-03_1622833.png"))); // NOI18N
+        txtEvaluar.setText("Evaluar");
+        txtEvaluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                txtEvaluarActionPerformed(evt);
             }
         });
 
@@ -423,7 +423,7 @@ public class FrameEvaluacion extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnIniciarJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtEvaluar, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -439,7 +439,7 @@ public class FrameEvaluacion extends javax.swing.JFrame {
                             .addComponent(jLabel15)
                             .addComponent(btnRegistrarEstudiantes, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtEvaluar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(btnIniciarJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -666,7 +666,6 @@ public class FrameEvaluacion extends javax.swing.JFrame {
     private void btnIniciarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarJuegoActionPerformed
         FrameReporte reporte = new FrameReporte();
         reporte.setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_btnIniciarJuegoActionPerformed
 
     private void btnRegistrarEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarEstudiantesActionPerformed
@@ -676,11 +675,11 @@ public class FrameEvaluacion extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnRegistrarEstudiantesActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        FrameSeleccionar seleccionar = new FrameSeleccionar();
-        seleccionar.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void txtEvaluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEvaluarActionPerformed
+         FrameSeleccionar c = new FrameSeleccionar();
+        c.setVisible(true);
+        
+    }//GEN-LAST:event_txtEvaluarActionPerformed
 
     private void btnGraficaEstadisticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficaEstadisticaActionPerformed
 
@@ -781,7 +780,6 @@ public class FrameEvaluacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        this.setVisible(false);
         FrameReportesEstudiantes report = new FrameReportesEstudiantes();
         report.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -854,7 +852,6 @@ public class FrameEvaluacion extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbfuerzamuscular;
     private javax.swing.JComboBox<String> cmbplaneacion;
     private javax.swing.JComboBox<String> cmbsensibilidad;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
@@ -885,6 +882,7 @@ public class FrameEvaluacion extends javax.swing.JFrame {
     private javax.swing.JPanel jpTiempo;
     private javax.swing.JPanel jpTiempo1;
     private javax.swing.JLabel lblTiempo;
+    private javax.swing.JButton txtEvaluar;
     private javax.swing.JTextField txtMils;
     private javax.swing.JTextField txtMin;
     private javax.swing.JTextField txtSeg;

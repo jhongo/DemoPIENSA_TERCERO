@@ -201,9 +201,7 @@ public class FrameReportesEstudiantes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverMouseReleased
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        this.setVisible(false);
-        FrameEvaluacion eva = new FrameEvaluacion();
-        eva.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     /**

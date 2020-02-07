@@ -67,9 +67,9 @@ DefaultTableModel mode1 = new DefaultTableModel();
        int columna=1;
        if (fila_point>-1){
            alumno_update=(String)mode1.getValueAt(fila_point, columna);
-           FrameEvaluacion informacion=new FrameEvaluacion();
-           informacion.setVisible(true);
+          
            FrameSeleccionar selec=new FrameSeleccionar();
+           selec.dispose();
        }
        }
     });
@@ -258,9 +258,7 @@ public void mostrarDatos(String valor) {
     }//GEN-LAST:event_btnVolverMouseReleased
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        this.setVisible(false);
-        FrameEvaluacion eva = new FrameEvaluacion();
-        eva.setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
