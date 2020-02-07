@@ -626,9 +626,8 @@ public class FrameRegistroAlumno extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCiAlumnoKeyTyped
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        FrameEvaluacion eva = new FrameEvaluacion();
-        this.setVisible(false);
-        eva.setVisible(true);
+        
+        this.dispose();
 
     }//GEN-LAST:event_btnVolverActionPerformed
 

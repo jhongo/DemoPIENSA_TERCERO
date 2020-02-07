@@ -1,12 +1,17 @@
 package Vista;
 
+import Arduino.Arduino;
 import Modelo.Conexion;
+import gnu.io.SerialPortEvent;
+import gnu.io.SerialPortEventListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import org.jfree.chart.ChartFactory;
@@ -14,53 +19,92 @@ import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
+import panamahitek.PanamaHitek_Arduino;
 
 public class FrameEvaluacion extends javax.swing.JFrame {
-    
-    String alumno_update="";
+
+    String alumno_update = "";
     int ID;
     String tiempo;
-    
+
+    private PanamaHitek_Arduino ino = new PanamaHitek_Arduino(); //Variable perteneciente al arduino 
+
+    private SerialPortEventListener listener = new SerialPortEventListener() {
+        @Override
+        public void serialEvent(SerialPortEvent spe) {
+            try {
+                if (ino.isMessageAvailable() == true) {
+                    lblTiempo.setText(ino.printMessage());
+
+                }
+
+            } catch (Exception e) {
+            }
+
+        }
+
+    };
+
+    Arduino arduino = new Arduino(); // Llamar a la clase arduino 
+
     public FrameEvaluacion() {
         initComponents();
+
+        //****************Conexion de la interfaz con arduino
+        try {
+            //ino.arduinoRXTX("COM16", 9600, listener);
+            //  ino.ArduinoTX("COM16", 0, 9600);
+            ino.arduinoRXTX("COM16",9600, listener);
+            //    ino.ArduinoRX("COM16", 0, 9600, listener);
+
+            //
+        } catch (Exception e) {
+        }
+
+        /**
+         * ******************************
+         */
         txtid.setVisible(true);
         /*Maximizae la ventana*/
         setExtendedState(MAXIMIZED_BOTH);
         setTitle("Evaluación");
         this.setLocationRelativeTo(null);
-        
-        alumno_update=FrameSeleccionar.alumno_update;
-        jpTiempo.setEnabled(false);        
+
+        alumno_update = FrameSeleccionar.alumno_update;
+        jpTiempo.setEnabled(false);
 //        t = new Timer(10, acciones);
         /*Cargar datos seleccionados*/
-                try {
-            Connection cn=Conexion.conectar();
-            PreparedStatement pst = cn.prepareStatement("select * from registroestudiantes where nombres='"+alumno_update+"' ");              
-            ResultSet rs=pst.executeQuery();
+        try {
+            Connection cn = Conexion.conectar();
+            PreparedStatement pst = cn.prepareStatement("select * from registroestudiantes where nombres='" + alumno_update + "' ");
+            ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                ID=rs.getInt("IdEstudiantes");
+                ID = rs.getInt("IdEstudiantes");
                 txtid.setText(rs.getString("IdEstudiantes"));
                 txtnombre.setText(rs.getString("nombres"));
                 txtapellidos.setText(rs.getString("apellidos"));
                 txtci.setText(rs.getString("ci"));
                 txtedad.setText(rs.getString("edad"));
                 txtcurso.setText(rs.getString("curso"));
-                rs.close();                
+                rs.close();
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,"Error al Descargar datos"+ e);
-        }}
-    public void limpiar(){   
-    txtTiempoEvaluacion.setText("");
-    txtapellidos.setText("");
-    txtci.setText("");
-    txtcurso.setText("");
-    txtedad.setText("");
-    txtid.setText("");
-    txtnombre.setText("");
+            JOptionPane.showMessageDialog(null, "Error al Descargar datos" + e);
+        }
     }
 
-   
+    //metodo desconocido
+    public void limpiar() {
+        txtTiempoEvaluacion.setText("");
+        txtapellidos.setText("");
+        txtci.setText("");
+        txtcurso.setText("");
+        txtedad.setText("");
+        txtid.setText("");
+        txtnombre.setText("");
+    }
+
+    //MOSTRAR RESULTADOS DEL MONITOR SERIAL EN UN JFRAME
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -88,10 +132,10 @@ public class FrameEvaluacion extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        cmbsensibilidad = new javax.swing.JComboBox<String>();
-        cmbfuerzamuscular = new javax.swing.JComboBox<String>();
-        cmbcoordinacion = new javax.swing.JComboBox<String>();
-        cmbplaneacion = new javax.swing.JComboBox<String>();
+        cmbsensibilidad = new javax.swing.JComboBox<>();
+        cmbfuerzamuscular = new javax.swing.JComboBox<>();
+        cmbcoordinacion = new javax.swing.JComboBox<>();
+        cmbplaneacion = new javax.swing.JComboBox<>();
         txtTiempoEvaluacion = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -107,6 +151,7 @@ public class FrameEvaluacion extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         lblTiempo = new javax.swing.JLabel();
         btnJuego = new javax.swing.JButton();
+        btnJuegoDetener = new javax.swing.JButton();
         jpTiempo1 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
@@ -247,13 +292,13 @@ public class FrameEvaluacion extends javax.swing.JFrame {
 
         jLabel13.setText("SENSIBILIDAD NORMAL:");
 
-        cmbsensibilidad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--SELECCIONES--", "BAJA", "MEDIA", "ALTA" }));
+        cmbsensibilidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONES--", "BAJA", "MEDIA", "ALTA" }));
 
-        cmbfuerzamuscular.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--SELECCIONES--", "BAJA", "MEDIA", "ALTA" }));
+        cmbfuerzamuscular.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONES--", "BAJA", "MEDIA", "ALTA" }));
 
-        cmbcoordinacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--SELECCIONES--", "BAJA", "MEDIA", "ALTA" }));
+        cmbcoordinacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONES--", "BAJA", "MEDIA", "ALTA" }));
 
-        cmbplaneacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--SELECCIONE--", "BAJA", "MEDIA", "ALTA" }));
+        cmbplaneacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONE--", "BAJA", "MEDIA", "ALTA" }));
 
         jLabel5.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
         jLabel5.setText("Diagnóstico de la Evaluación");
@@ -425,6 +470,25 @@ public class FrameEvaluacion extends javax.swing.JFrame {
         btnJuego.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/play.png"))); // NOI18N
         btnJuego.setText("INICIAR");
         btnJuego.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnJuego.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnJuegoMouseClicked(evt);
+            }
+        });
+        btnJuego.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnJuegoActionPerformed(evt);
+            }
+        });
+
+        btnJuegoDetener.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/play.png"))); // NOI18N
+        btnJuegoDetener.setText("Detener");
+        btnJuegoDetener.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnJuegoDetener.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnJuegoDetenerActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpTiempoLayout = new javax.swing.GroupLayout(jpTiempo);
         jpTiempo.setLayout(jpTiempoLayout);
@@ -439,7 +503,9 @@ public class FrameEvaluacion extends javax.swing.JFrame {
                                 .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jpTiempoLayout.createSequentialGroup()
                                 .addGap(44, 44, 44)
-                                .addComponent(lblTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jpTiempoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnJuegoDetener, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 28, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpTiempoLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -454,7 +520,9 @@ public class FrameEvaluacion extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lblTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jpTiempoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnJuego, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnJuegoDetener, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -596,42 +664,8 @@ public class FrameEvaluacion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-//    private Timer t;
-//    private int h, m, s, cs;
-//    private ActionListener acciones = new ActionListener(){
-//
-//        @Override
-//        public void actionPerformed(ActionEvent ae) {
-//            ++cs; 
-//            if(cs==100){
-//                cs = 0;
-//                ++s;
-//            }
-//            if(s==60) 
-//            {
-//                s = 0;
-//                ++m;
-//            }
-//            if(m==60)
-//            {
-//                m = 0;
-//                ++h;
-//            }
-//            actualizarLabel();
-//        }
-//        
-//    };
-//     private void actualizarLabel() {
-//      tiempo = (h<=9?"0":"")+h+":"+(m<=9?"0":"")+m+":"+(s<=9?"0":"")+s+":"+(cs<=9?"0":"")+cs;
-//        etiquetaTiempo.setText(tiempo); 
-//      
-//    } 
-     
-     
-     
-     
-     
+
+
     private void btnIniciarJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarJuegoActionPerformed
         FrameReporte reporte = new FrameReporte();
         reporte.setVisible(true);
@@ -641,7 +675,7 @@ public class FrameEvaluacion extends javax.swing.JFrame {
     private void btnRegistrarEstudiantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarEstudiantesActionPerformed
         FrameRegistroAlumno c = new FrameRegistroAlumno();
         c.setVisible(true);
-        
+
 
     }//GEN-LAST:event_btnRegistrarEstudiantesActionPerformed
 
@@ -652,8 +686,8 @@ public class FrameEvaluacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnGraficaEstadisticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficaEstadisticaActionPerformed
-        
-         int minutos, segundos, milisegundos;
+
+        int minutos, segundos, milisegundos;
         minutos = Integer.parseInt(txtMin.getText());
         segundos = Integer.parseInt(txtSeg.getText());
         milisegundos = Integer.parseInt(txtMils.getText());
@@ -676,14 +710,13 @@ public class FrameEvaluacion extends javax.swing.JFrame {
                 System.out.println("ERROR" + e);
             }
 
-        } else{
+        } else {
             try {
                 DefaultCategoryDataset ds = new DefaultCategoryDataset();
                 ds.addValue(15, "Baja", "Coordinacion");
                 ds.addValue(20, "Media", "Planeacion");
                 ds.addValue(15, "Baja", "Fuerza");
                 ds.addValue(23, "Alta", "Sensibiidad");
-
 
                 JFreeChart jf = ChartFactory.createBarChart("Diagnostico", "Parametro", "Puntuación", ds, PlotOrientation.VERTICAL, true, true, true);
 
@@ -715,7 +748,7 @@ public class FrameEvaluacion extends javax.swing.JFrame {
             }
 
         }
-        
+
     }//GEN-LAST:event_btnGraficaEstadisticaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -755,6 +788,27 @@ public class FrameEvaluacion extends javax.swing.JFrame {
         FrameReportesEstudiantes report = new FrameReportesEstudiantes();
         report.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnJuegoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJuegoActionPerformed
+       try {
+            ino.sendData("1");
+         
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_btnJuegoActionPerformed
+
+    private void btnJuegoDetenerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJuegoDetenerActionPerformed
+        try {
+            ino.sendData("0");
+        } catch (Exception ex) {
+            Logger.getLogger(FrameEvaluacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnJuegoDetenerActionPerformed
+
+    private void btnJuegoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnJuegoMouseClicked
+       
+    }//GEN-LAST:event_btnJuegoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -796,6 +850,7 @@ public class FrameEvaluacion extends javax.swing.JFrame {
     private javax.swing.JButton btnGraficaEstadistica;
     private javax.swing.JButton btnIniciarJuego;
     private javax.swing.JButton btnJuego;
+    private javax.swing.JButton btnJuegoDetener;
     private javax.swing.JButton btnRegistrarEstudiantes;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cmbcoordinacion;
