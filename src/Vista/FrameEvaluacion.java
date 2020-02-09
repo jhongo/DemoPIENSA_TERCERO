@@ -35,7 +35,7 @@ public class FrameEvaluacion extends javax.swing.JFrame {
             try {
                 if (ino.isMessageAvailable() == true) {
                     lblTiempo.setText(ino.printMessage());
-
+                    
                 }
 
             } catch (Exception e) {

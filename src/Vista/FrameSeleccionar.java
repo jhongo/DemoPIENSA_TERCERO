@@ -66,7 +66,9 @@ DefaultTableModel mode1 = new DefaultTableModel();
        int fila_point=tbalumnos.rowAtPoint(e.getPoint());
        int columna=1;
        if (fila_point>-1){
-           alumno_update=(String)mode1.getValueAt(fila_point, columna);          
+           alumno_update=(String)mode1.getValueAt(fila_point, columna);        
+           FrameSeleccionar fs = new FrameSeleccionar(); 
+           fs.dispose();
        }
        }
     });
