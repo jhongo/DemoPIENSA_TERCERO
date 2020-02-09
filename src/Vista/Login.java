@@ -26,6 +26,7 @@ public class Login extends javax.swing.JFrame {
         setTitle("Login");
         AWTUtilities.setWindowOpaque(this, false);
         this.setLocationRelativeTo(null);
+        setTitle("LOGIN");
     }
 
     /**
@@ -348,7 +349,7 @@ public class Login extends javax.swing.JFrame {
                      try {
                          Thread.sleep(5000); 
                          dispose();
-                         new FrameEvaluacion().setVisible(true);
+                         new FrameMenu().setVisible(true);
                      } catch (InterruptedException ex) {
                          Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                      }

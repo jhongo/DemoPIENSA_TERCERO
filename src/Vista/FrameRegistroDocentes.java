@@ -25,7 +25,7 @@ public class FrameRegistroDocentes extends javax.swing.JFrame {
     public FrameRegistroDocentes() {
         initComponents(); 
         this.setLocationRelativeTo(null);
-        setTitle("Registro Docentes");
+        setTitle("REGISTRO DOCENTES");
     }
 
     @SuppressWarnings("unchecked")
