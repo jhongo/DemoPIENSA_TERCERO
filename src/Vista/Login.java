@@ -26,6 +26,7 @@ public class Login extends javax.swing.JFrame {
         setTitle("Login");
         AWTUtilities.setWindowOpaque(this, false);
         this.setLocationRelativeTo(null);
+        setTitle("LOGIN");
     }
 
     /**

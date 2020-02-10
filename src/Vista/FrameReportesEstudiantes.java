@@ -16,6 +16,7 @@ public class FrameReportesEstudiantes extends javax.swing.JFrame {
     public FrameReportesEstudiantes() {
         initComponents();
         mostrarDatos("");
+        this.setLocationRelativeTo(null);
         setTitle("Evaluaciones Realizadas");
         
     }

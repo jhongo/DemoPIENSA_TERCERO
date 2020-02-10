@@ -25,7 +25,7 @@ public class FrameRegistroDocentes extends javax.swing.JFrame {
     public FrameRegistroDocentes() {
         initComponents(); 
         this.setLocationRelativeTo(null);
-        setTitle("Registro Docentes");
+        setTitle("REGISTRO DOCENTES");
     }
 
     @SuppressWarnings("unchecked")
@@ -314,7 +314,7 @@ public class FrameRegistroDocentes extends javax.swing.JFrame {
                         
 
                         if (moSql.registrar(mod)) {
-                            JOptionPane.showMessageDialog(null, "Guardado"); 
+                            JOptionPane.showMessageDialog(null, "Registro Exitoso"); 
                             limpiar();
                         } else {
                             JOptionPane.showMessageDialog(null, "Error al guardar");

@@ -19,7 +19,8 @@ public class FrameReporteCurso extends javax.swing.JFrame implements Printable {
 
     public FrameReporteCurso() {
         initComponents();
-        
+        this.setLocationRelativeTo(null);
+        setTitle("REPORTE DE CURSO");
                 //descargar valores desde una base de datos a un combo
         try {
             Connection cn=Conexion.conectar();
@@ -42,6 +43,7 @@ public class FrameReporteCurso extends javax.swing.JFrame implements Printable {
         jLabel2 = new javax.swing.JLabel();
         cmbcurso = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +114,20 @@ public class FrameReporteCurso extends javax.swing.JFrame implements Printable {
             }
         });
 
+        btnVolver.setFont(new java.awt.Font("Georgia", 1, 12)); // NOI18N
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/icons/iconfinder_f-left_256_282467.png"))); // NOI18N
+        btnVolver.setText("Volver");
+        btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                btnVolverMouseReleased(evt);
+            }
+        });
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,13 +143,18 @@ public class FrameReporteCurso extends javax.swing.JFrame implements Printable {
                         .addGap(232, 232, 232)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(cmbcurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cmbcurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnVolver)))
                 .addContainerGap(124, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(69, 69, 69)
+                .addContainerGap()
+                .addComponent(btnVolver)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbcurso, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -196,6 +217,15 @@ public class FrameReporteCurso extends javax.swing.JFrame implements Printable {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnVolverMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseReleased
+
+    }//GEN-LAST:event_btnVolverMouseReleased
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+
+      this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -232,6 +262,7 @@ public class FrameReporteCurso extends javax.swing.JFrame implements Printable {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox cmbcurso;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
