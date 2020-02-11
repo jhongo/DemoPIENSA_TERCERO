@@ -5,11 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import jdk.internal.instrumentation.Logger;
 
 public class ConsultaAlumnos extends Conexion { 
     FrameRegistroAlumno fra = new FrameRegistroAlumno();
