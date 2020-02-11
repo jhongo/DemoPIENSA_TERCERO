@@ -114,7 +114,7 @@ DefaultTableModel mode1 = new DefaultTableModel();
         try {
             //ino.arduinoRXTX("COM16", 9600, listener);
             //  ino.ArduinoTX("COM16", 0, 9600);
-            ino.arduinoRXTX("COM16",9600, listener);
+            ino.arduinoRXTX("COM6",9600, listener);
             //    ino.ArduinoRX("COM16", 0, 9600, listener);
 
             //
